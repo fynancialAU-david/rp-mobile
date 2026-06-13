@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -217,6 +217,66 @@
 .edu-tag{font-size:10px;font-weight:700;color:var(--a);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;}
 .edu-title{font-family:var(--fd);color:#fff;font-size:14px;font-weight:500;line-height:1.35;margin-bottom:5px;}
 .edu-meta{font-size:11px;color:rgba(255,255,255,.5);}
+/* Retirement confidence card */
+.retconf-wrap{display:flex;gap:14px;align-items:flex-start;margin-bottom:10px;}
+.retconf-ring-wrap{display:flex;flex-direction:column;align-items:center;gap:5px;flex-shrink:0;}
+.retconf-label{font-size:10px;font-weight:700;color:#3A7A3A;text-transform:uppercase;letter-spacing:.07em;text-align:center;max-width:100px;line-height:1.3;}
+.retconf-rows{flex:1;display:flex;flex-direction:column;gap:7px;padding-top:6px;}
+.retconf-row{display:flex;justify-content:space-between;align-items:center;}
+.retconf-key{font-size:12px;color:var(--t2);}
+.retconf-val{font-size:13px;font-weight:600;color:var(--t);}
+.retconf-green{color:#3A7A3A;}
+.retconf-status{font-size:12px;color:var(--t2);margin-bottom:8px;}
+.retconf-how{font-size:11px;color:var(--a);cursor:pointer;display:flex;align-items:center;gap:4px;}
+.retconf-explain{font-size:12px;color:var(--t2);line-height:1.55;margin-top:8px;display:none;}
+.retconf-explain.open{display:block;}
+/* Net worth card and property items */
+.nw-card{background:var(--p);border-radius:14px;margin:8px 12px 0;padding:16px;position:relative;overflow:hidden;}
+.nw-card::before{content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:rgba(200,147,58,.1);}
+.nw-main{font-family:'Playfair Display',serif;font-size:28px;font-weight:600;color:#fff;position:relative;z-index:1;}
+.nw-sub{font-size:11px;color:rgba(255,255,255,.55);margin-bottom:12px;position:relative;z-index:1;}
+.nw-cols{display:flex;align-items:center;gap:0;position:relative;z-index:1;margin-bottom:8px;}
+.nw-col{flex:1;text-align:center;}
+.nw-col-val{font-size:15px;font-weight:600;color:#fff;}
+.nw-col-lbl{font-size:10px;color:rgba(255,255,255,.55);margin-top:2px;}
+.nw-divider{width:1px;height:32px;background:rgba(255,255,255,.15);}
+.nw-updated{font-size:10px;color:rgba(255,255,255,.4);position:relative;z-index:1;}
+.prop-item{padding:12px 14px;}
+.prop-addr{font-size:13px;font-weight:500;color:var(--t);margin-bottom:2px;}
+.prop-meta{font-size:11px;color:var(--t3);margin-bottom:8px;}
+.prop-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.prop-link{font-size:11px;color:var(--a);font-weight:600;text-decoration:none;}
+.prop-override-btn{font-size:11px;color:var(--t2);background:var(--s2);border:1px solid var(--b);border-radius:6px;padding:3px 8px;cursor:pointer;font-family:'Inter',sans-serif;}
+.prop-override{display:none;margin-top:8px;display:none;gap:6px;}
+.prop-override.open{display:flex;}
+.prop-override-input{flex:1;border:1px solid var(--b);border-radius:7px;padding:7px 10px;font-size:13px;font-family:'Inter',sans-serif;color:var(--t);background:var(--s2);outline:none;}
+.prop-override-save{background:var(--a);color:var(--p);border:none;border-radius:7px;padding:7px 12px;font-size:12px;font-weight:700;font-family:'Inter',sans-serif;cursor:pointer;}
+/* Settings sheet */
+.settings-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;display:none;opacity:0;transition:opacity .25s;}
+.settings-overlay.open{display:block;opacity:1;}
+.settings-sheet{position:fixed;bottom:0;left:0;right:0;background:var(--s);border-radius:20px 20px 0 0;z-index:201;transform:translateY(100%);transition:transform .28s cubic-bezier(.32,1.22,.43,.98);max-height:80vh;overflow-y:auto;max-width:500px;margin:0 auto;}
+.settings-sheet.open{transform:translateY(0);}
+.settings-hdr{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 12px;border-bottom:1px solid var(--b);}
+.settings-title{font-family:'Playfair Display',serif;font-size:18px;color:var(--t);font-weight:500;}
+.settings-close{background:none;border:none;font-size:20px;color:var(--t3);cursor:pointer;padding:4px;}
+.settings-body{padding:8px 0 32px;}
+.settings-row{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--b);}
+.settings-row-left{display:flex;align-items:center;gap:11px;font-size:14px;color:var(--t);}
+.settings-row-left i{font-size:18px;color:var(--t3);}
+.settings-link-row{}
+.settings-ext{font-size:18px;color:var(--t3);}
+.settings-version{padding:14px 18px;font-size:11px;color:var(--t3);}
+.toggle-wrap{width:44px;height:26px;border-radius:13px;background:var(--s2);border:1px solid var(--b);position:relative;cursor:pointer;transition:background .2s;}
+.toggle-wrap.toggle-on{background:var(--a);border-color:var(--a);}
+.toggle-knob{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.2);transition:transform .2s;}
+.toggle-wrap.toggle-on .toggle-knob{transform:translateX(18px);}
+/* Disclaimer modal */
+.disclaimer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:500;display:flex;align-items:center;justify-content:center;padding:24px;}
+.disclaimer-card{background:var(--s);border-radius:20px;padding:28px 22px;max-width:340px;width:100%;text-align:center;}
+.disclaimer-logo{margin-bottom:16px;display:flex;justify-content:center;}
+.disclaimer-heading{font-family:'Playfair Display',serif;font-size:20px;color:var(--t);font-weight:600;margin-bottom:12px;}
+.disclaimer-body{font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:22px;}
+.disclaimer-btn{background:var(--a);color:var(--p);border:none;border-radius:12px;padding:13px 24px;font-size:14px;font-weight:700;font-family:'Inter',sans-serif;cursor:pointer;width:100%;}
 @media(max-width:500px){
   .wrapper{background:var(--s2);padding:0;display:block;}
   .phone{width:100%;min-height:100vh;border-radius:0;box-shadow:none;}
@@ -226,6 +286,19 @@
 </head>
 <body>
 <div class="wrapper" id="app">
+
+<div class="disclaimer-overlay" id="disclaimer-overlay">
+  <div class="disclaimer-card">
+    <div class="disclaimer-logo">
+      <svg width="40" height="40" viewBox="0 0 35.51 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0.461384V35.9654H13.6739V33.4098C13.6533 29.3317 10.3307 26.0205 6.24799 26.0205V22.7829C9.13433 22.7829 11.7497 23.9402 13.6716 25.807V9.54521C13.7451 6.01592 16.5442 3.13647 20.0804 3.13647C23.6166 3.13647 26.4891 6.01133 26.4891 9.54521C26.4891 13.0791 23.6143 15.9539 20.0804 15.9539C20.0689 15.9539 20.0574 15.9539 20.0482 15.9539V12.7163C20.0482 12.7163 20.0712 12.7163 20.0804 12.7163C21.8301 12.7163 23.2537 11.2926 23.2537 9.54291C23.2537 7.79319 21.8301 6.36954 20.0804 6.36954C19.217 6.36954 18.434 6.71626 17.8622 7.27884H17.8645C17.2721 7.86667 16.9667 8.65427 16.9208 9.67608V9.70135C16.9208 9.72201 16.9208 9.73349 16.9208 9.74038V9.75415L16.9162 15.1112C16.9139 15.1112 16.9116 15.1089V22.7645C19.7658 19.0538 24.2457 16.6566 29.2767 16.6566V19.8942C22.4616 19.8942 16.9162 25.4396 16.9162 32.2547V35.9034H16.9139V35.9608H35.5063V0.456787H0.00229846L0 0.461384ZM8.52354 16.6084C7.25603 16.6084 6.22733 15.5797 6.22733 14.3121C6.22733 13.0446 7.25603 12.0159 8.52354 12.0159C9.79105 12.0159 10.8198 13.0446 10.8198 14.3121C10.8198 15.5797 9.79105 16.6084 8.52354 16.6084Z" fill="#00BF7D"/>
+      </svg>
+    </div>
+    <div class="disclaimer-heading">Before you begin</div>
+    <div class="disclaimer-body">The information shown in this app is an estimate only and does not constitute financial advice. Projections and valuations are indicative and should be discussed with your adviser.</div>
+    <button class="disclaimer-btn" onclick="acceptDisclaimer()">I understand, continue</button>
+  </div>
+</div>
 
 <div class="phone" id="phone">
   <div class="status-bar">
@@ -243,7 +316,7 @@
     </div>
     <div class="hdr-icons">
       <span class="hdr-icon"><i class="ti ti-bell" aria-hidden="true"></i><span class="ndot"></span></span>
-      <span class="hdr-icon"><i class="ti ti-settings" aria-hidden="true"></i></span>
+      <span class="hdr-icon" onclick="openSettings()"><i class="ti ti-settings" aria-hidden="true"></i></span>
     </div>
   </div>
 
@@ -311,10 +384,37 @@
         <div class="stat-box"><div class="sl">Portfolio</div><div class="sv">$847k</div><div class="sc sup">↑ 2.4% this month</div></div>
         <div class="stat-box"><div class="sl">Annual review</div><div class="sv" style="font-size:15px;padding-top:3px">14 Jul</div><div class="sc snu">18 days away</div></div>
       </div>
+      <div class="sec-title">Retirement confidence</div>
+      <div class="card"><div class="ci">
+        <div class="retconf-wrap">
+          <div class="retconf-ring-wrap">
+            <!-- SVG arc ring showing 84% -->
+            <svg width="110" height="110" viewBox="0 0 110 110">
+              <circle cx="55" cy="55" r="46" fill="none" stroke="#E8EDF2" stroke-width="10"/>
+              <!-- arc: circumference = 2*pi*46 = 289. 84% = 242.7. offset = 289 - 242.7 = 46.3 -->
+              <circle cx="55" cy="55" r="46" fill="none" stroke="#3A7A3A" stroke-width="10"
+                stroke-dasharray="289" stroke-dashoffset="46.3"
+                stroke-linecap="round"
+                transform="rotate(-90 55 55)"/>
+              <text x="55" y="51" text-anchor="middle" font-family="'Playfair Display',serif" font-size="22" font-weight="600" fill="#1A2332">84%</text>
+              <text x="55" y="64" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#8A9BAA">confidence</text>
+            </svg>
+            <div class="retconf-label">On Track for Retirement</div>
+          </div>
+          <div class="retconf-rows">
+            <div class="retconf-row"><span class="retconf-key">Current super</span><span class="retconf-val">$847k</span></div>
+            <div class="retconf-row"><span class="retconf-key">Projected at 67</span><span class="retconf-val retconf-green">$1.84M</span></div>
+            <div class="retconf-row"><span class="retconf-key">Target</span><span class="retconf-val">$1.6M</span></div>
+          </div>
+        </div>
+        <div class="retconf-status">Tracking <strong>$240k above target</strong></div>
+        <div class="retconf-how" id="rch-toggle" onclick="togRetConf()">How is this calculated? <i class="ti ti-chevron-down" id="rch-icon"></i></div>
+        <div class="retconf-explain" id="rch-explain">Confidence score is based on your current super balance, projected contributions, expected investment returns, and your nominated retirement age of 67. Projections use ASIC's MoneySmart assumptions and are indicative only.</div>
+      </div></div>
       <div class="sec-title">Before your review</div>
       <div class="card"><div class="ci">
-        <div style="font-family:var(--fd);font-size:15px;color:var(--t);font-weight:500;margin-bottom:4px;">Annual review preparation</div>
-        <div style="font-size:12px;color:var(--t2);margin-bottom:10px;line-height:1.45;">Traci has asked you to complete 3 items before 14 July.</div>
+        <div style="font-family:var(--fd);font-size:15px;color:var(--t);font-weight:500;margin-bottom:4px;">Coming up — 14 July</div>
+        <div style="font-size:12px;color:var(--t2);margin-bottom:10px;line-height:1.45;">Traci has 3 items for you to complete before your review.</div>
         <div class="review-items">
           <div class="rev-item"><i class="ti ti-user-check" aria-hidden="true"></i><span class="rev-item-label">Confirm your personal details</span><span class="rev-item-status rs-done">Done</span></div>
           <div class="rev-item"><i class="ti ti-home" aria-hidden="true"></i><span class="rev-item-label">Update property valuations</span><span class="rev-item-status rs-todo">To do</span></div>
@@ -586,7 +686,6 @@
       <div class="prof-hero">
         <div class="prof-av-wrap"><div class="prof-av-fallback">SK</div></div>
         <div class="prof-name">Sarah Kowalski</div>
-        <div class="prof-stage-badge">Prospect</div>
       </div>
       <div style="height:10px"></div>
       <div class="prof-sec">
@@ -645,7 +744,59 @@
           <div class="prof-av-fallback" style="display:none">SK</div>
         </div>
         <div class="prof-name">Sarah Kowalski</div>
-        <div class="prof-stage-badge">Active Client</div>
+      </div>
+      <!-- Financial snapshot -->
+      <div class="nw-card">
+        <div class="nw-main">$1,284,000</div>
+        <div class="nw-sub">Estimated net worth</div>
+        <div class="nw-cols">
+          <div class="nw-col"><div class="nw-col-val">$1,641,000</div><div class="nw-col-lbl">Total assets</div></div>
+          <div class="nw-divider"></div>
+          <div class="nw-col"><div class="nw-col-val">$357,000</div><div class="nw-col-lbl">Total liabilities</div></div>
+        </div>
+        <div class="nw-updated">Last updated 1 June 2026</div>
+      </div>
+      <div style="height:12px"></div>
+      <div class="lib-sec">
+        <div class="fdr open" onclick="togFdr('cf-acc','ca-acc')">
+          <div class="fdr-hdr"><div class="fdr-icon fi-gold"><i class="ti ti-building-bank"></i></div><div><div class="fdr-label">Accounts</div><div class="fdr-count">3 accounts · $1,009,000</div></div><i class="ti ti-chevron-down fdr-arr" id="ca-acc" style="transform:rotate(180deg)"></i></div>
+          <div class="fdr-files open" id="cf-acc">
+            <div class="fitem"><i class="ti ti-chart-pie"></i><div style="flex:1"><div class="fitem-name">SMSF — Macquarie</div></div><span class="fitem-tag" style="font-size:12px;font-weight:600;color:var(--t)">$847,000</span></div>
+            <div class="fitem"><i class="ti ti-trending-up"></i><div style="flex:1"><div class="fitem-name">Investment — CommSec</div></div><span class="fitem-tag" style="font-size:12px;font-weight:600;color:var(--t)">$124,000</span></div>
+            <div class="fitem"><i class="ti ti-home-dollar"></i><div style="flex:1"><div class="fitem-name">Offset account — ANZ</div></div><span class="fitem-tag" style="font-size:12px;font-weight:600;color:var(--t)">$38,000</span></div>
+          </div>
+        </div>
+        <div class="fdr open" onclick="togFdr('cf-prop','ca-prop')">
+          <div class="fdr-hdr"><div class="fdr-icon fi-green"><i class="ti ti-home"></i></div><div><div class="fdr-label">Properties</div><div class="fdr-count">2 properties · $1,092,000 est.</div></div><i class="ti ti-chevron-down fdr-arr" id="ca-prop" style="transform:rotate(180deg)"></i></div>
+          <div class="fdr-files open" id="cf-prop">
+            <div class="prop-item">
+              <div class="prop-addr">14 Elmswood Drive, Colac VIC 3250</div>
+              <div class="prop-meta">Owner occupied · Est. $680,000</div>
+              <div class="prop-actions">
+                <a class="prop-link" href="https://www.realestate.com.au/address-search/?query=14+Elmswood+Drive+Colac+VIC+3250" target="_blank">View on realestate.com.au</a>
+                <button class="prop-override-btn" onclick="togOverride('ov1');event.stopPropagation()">Override value</button>
+              </div>
+              <div class="prop-override" id="ov1"><input class="prop-override-input" type="number" placeholder="Enter revised estimate" /><button class="prop-override-save" onclick="saveOverride('ov1')">Save</button></div>
+            </div>
+            <div class="prop-item" style="border-top:1px solid var(--b)">
+              <div class="prop-addr">22 Harvest Road, Colac VIC 3250</div>
+              <div class="prop-meta">Investment · Est. $412,000</div>
+              <div class="prop-actions">
+                <a class="prop-link" href="https://www.realestate.com.au/address-search/?query=22+Harvest+Road+Colac+VIC+3250" target="_blank">View on realestate.com.au</a>
+                <button class="prop-override-btn" onclick="togOverride('ov2');event.stopPropagation()">Override value</button>
+              </div>
+              <div class="prop-override" id="ov2"><input class="prop-override-input" type="number" placeholder="Enter revised estimate" /><button class="prop-override-save" onclick="saveOverride('ov2')">Save</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="fdr" onclick="togFdr('cf-ins','ca-ins')">
+          <div class="fdr-hdr"><div class="fdr-icon fi-blue"><i class="ti ti-shield-check"></i></div><div><div class="fdr-label">Insurance</div><div class="fdr-count">3 policies</div></div><i class="ti ti-chevron-down fdr-arr" id="ca-ins"></i></div>
+          <div class="fdr-files" id="cf-ins">
+            <div class="fitem"><i class="ti ti-heart-handshake"></i><div style="flex:1"><div class="fitem-name">Life cover — AIA</div></div><span class="fitem-tag" style="font-size:12px;font-weight:600;color:var(--t)">$1,200,000</span></div>
+            <div class="fitem"><i class="ti ti-wheelchair"></i><div style="flex:1"><div class="fitem-name">TPD — AIA</div></div><span class="fitem-tag" style="font-size:12px;font-weight:600;color:var(--t)">$800,000</span></div>
+            <div class="fitem"><i class="ti ti-cash"></i><div style="flex:1"><div class="fitem-name">Income protection — TAL</div></div><span class="fitem-tag" style="font-size:12px;font-weight:600;color:var(--t)">$8,500/mo</span></div>
+          </div>
+        </div>
       </div>
       <div style="height:10px"></div>
       <div class="prof-sec">
@@ -656,8 +807,6 @@
       <div class="prof-sec">
         <div class="prof-row"><span class="prl"><i class="ti ti-user" aria-hidden="true"></i>Adviser</span><span class="prv">Traci Bartlett</span></div>
         <div class="prof-row"><span class="prl"><i class="ti ti-calendar" aria-hidden="true"></i>Client since</span><span class="prv">March 2024</span></div>
-        <div class="prof-row"><span class="prl"><i class="ti ti-chart-bar" aria-hidden="true"></i>Portfolio</span><span class="prv">$847,000</span></div>
-        <div class="prof-row"><span class="prl"><i class="ti ti-calendar-event" aria-hidden="true"></i>Next review</span><span class="prv acc">14 Jul 2025</span></div>
       </div>
       <div class="prof-sec">
         <div class="prof-row"><span class="prl"><i class="ti ti-fingerprint" aria-hidden="true"></i>Security</span><span class="prv">Face ID</span></div>
@@ -710,6 +859,35 @@
 </div>
 </div>
 
+<!-- Settings sheet -->
+<div class="settings-overlay" id="settings-overlay" onclick="closeSettings()"></div>
+<div class="settings-sheet" id="settings-sheet">
+  <div class="settings-hdr">
+    <span class="settings-title">Settings</span>
+    <button class="settings-close" onclick="closeSettings()"><i class="ti ti-x"></i></button>
+  </div>
+  <div class="settings-body">
+    <div class="settings-row">
+      <div class="settings-row-left"><i class="ti ti-fingerprint"></i><span>Face ID / Touch ID</span></div>
+      <div class="toggle-wrap toggle-on" id="tog-faceid" onclick="togSetting('tog-faceid')"><div class="toggle-knob"></div></div>
+    </div>
+    <div class="settings-row">
+      <div class="settings-row-left"><i class="ti ti-bell"></i><span>Push notifications</span></div>
+      <div class="toggle-wrap toggle-on" id="tog-notif" onclick="togSetting('tog-notif')"><div class="toggle-knob"></div></div>
+    </div>
+    <div class="settings-row">
+      <div class="settings-row-left"><i class="ti ti-mail"></i><span>Marketing communications</span></div>
+      <div class="toggle-wrap" id="tog-mktg" onclick="togSetting('tog-mktg')"><div class="toggle-knob"></div></div>
+    </div>
+    <div class="settings-row settings-link-row">
+      <div class="settings-row-left"><i class="ti ti-lock"></i><span>Privacy policy</span></div>
+      <a href="https://www.realestate.com.au" target="_blank" class="settings-ext"><i class="ti ti-external-link"></i></a>
+    </div>
+    <div class="settings-version">Fynancial Platform v4.2 · Demo</div>
+    <button class="logout-btn" style="margin:0;width:100%" onclick="closeSettings()"><i class="ti ti-logout" style="font-size:15px"></i>Sign out</button>
+  </div>
+</div>
+
 <script>
 var lc='ph',curTab='home';
 var themes=['','th-fw','th-dc','th-sg'];
@@ -725,6 +903,14 @@ function togFdr(fid,aid){var f=document.getElementById(fid),a=document.getElemen
 var pdfPages={pdf1:1};
 function pdfNav(id,dir){var cur=pdfPages[id],next=cur+dir;if(next<1||next>3)return;document.getElementById(id+'-p'+cur).classList.remove('active');document.getElementById(id+'-p'+next).classList.add('active');pdfPages[id]=next;document.getElementById(id+'-num').textContent=next+' / 3';document.getElementById(id+'-prev').disabled=next===1;document.getElementById(id+'-next').disabled=next===3;}
 function playVideo(id){var overlay=document.querySelector('#'+id+' .post-video-overlay'),player=document.getElementById(id+'-player'),vid=document.getElementById(id+'-vid');if(overlay)overlay.style.display='none';player.classList.add('playing');if(vid){var p=vid.play();if(p)p.catch(function(){});}}
+function togRetConf(){var e=document.getElementById('rch-explain'),i=document.getElementById('rch-icon');e.classList.toggle('open');i.style.transform=e.classList.contains('open')?'rotate(180deg)':'rotate(0deg)';}
+function togOverride(id){var el=document.getElementById(id);el.classList.toggle('open');}
+function saveOverride(id){var el=document.getElementById(id),inp=el.querySelector('input');if(inp.value){var meta=el.previousElementSibling;if(meta&&meta.classList.contains('prop-actions')){var pm=meta.previousElementSibling;if(pm&&pm.classList.contains('prop-meta')){var v=parseInt(inp.value).toLocaleString('en-AU');pm.textContent=pm.textContent.replace(/Est\. \$[\d,]+/,'Est. $'+v);}}}el.classList.remove('open');}
+function openSettings(){var o=document.getElementById('settings-overlay'),s=document.getElementById('settings-sheet');o.classList.add('open');s.classList.add('open');}
+function closeSettings(){var o=document.getElementById('settings-overlay'),s=document.getElementById('settings-sheet');s.classList.remove('open');setTimeout(function(){o.classList.remove('open');},280);}
+function togSetting(id){document.getElementById(id).classList.toggle('toggle-on');}
+function acceptDisclaimer(){localStorage.setItem('rp_disclaimer_accepted','1');document.getElementById('disclaimer-overlay').style.display='none';}
+function initDisclaimer(){if(!localStorage.getItem('rp_disclaimer_accepted')){document.getElementById('disclaimer-overlay').style.display='flex';}else{document.getElementById('disclaimer-overlay').style.display='none';}}
 document.getElementById('ph-input').addEventListener('keydown',function(e){if(e.key==='Enter')sendMsg('ph');});
 document.getElementById('ch-input').addEventListener('keydown',function(e){if(e.key==='Enter')sendMsg('ch');});
 (function(){
@@ -736,6 +922,7 @@ document.getElementById('ch-input').addEventListener('keydown',function(e){if(e.
   document.getElementById('phone').className='phone '+(themes[tIdx]||'');
   switchTab(lc,'home');
   var ls=document.getElementById('__rp_loading');if(ls)ls.parentNode.removeChild(ls);
+  initDisclaimer();
 })();
 </script>
 
