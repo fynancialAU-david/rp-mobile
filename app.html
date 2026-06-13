@@ -280,6 +280,18 @@
 .disclaimer-heading{font-family:'Playfair Display',serif;font-size:22px;color:var(--t);font-weight:600;margin-bottom:12px;}
 .disclaimer-body{font-size:15px;color:var(--t2);line-height:1.6;margin-bottom:22px;}
 .disclaimer-btn{background:var(--a);color:var(--p);border:none;border-radius:12px;padding:13px 24px;font-size:16px;font-weight:700;font-family:'Inter',sans-serif;cursor:pointer;width:100%;}
+.evt-card{background:var(--s);border-radius:14px;margin:0 12px 10px;border:1px solid var(--b);overflow:hidden;}
+.evt-img-wrap{position:relative;height:140px;overflow:hidden;}
+.evt-img{width:100%;height:100%;object-fit:cover;display:block;}
+.evt-img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.1) 0%,rgba(0,0,0,.45) 100%);}
+.evt-tag-wrap{position:absolute;bottom:10px;left:12px;}
+.evt-tag{background:var(--a);color:var(--p);font-size:11px;font-weight:700;border-radius:8px;padding:3px 9px;text-transform:uppercase;letter-spacing:.06em;}
+.evt-body{padding:13px 14px 14px;}
+.evt-title{font-family:'Playfair Display',serif;font-size:17px;color:var(--t);font-weight:500;line-height:1.35;margin-bottom:9px;}
+.evt-meta-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:4px;}
+.evt-meta{font-size:13px;color:var(--t3);display:flex;align-items:center;gap:4px;}
+.evt-meta i{font-size:15px;}
+.evt-desc{font-size:13px;color:var(--t2);line-height:1.55;margin:9px 0 12px;}
 .install-banner{display:none;align-items:center;gap:10px;background:#1A2332;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.1);}
 .install-banner.visible{display:flex;}
 .install-banner-text{flex:1;font-size:14px;color:rgba(255,255,255,.85);line-height:1.4;}
@@ -440,6 +452,26 @@
         </div>
         <button class="cta" style="margin-top:12px">Continue review prep</button>
       </div></div>
+      <div class="sec-title">Upcoming in your area</div>
+      <div class="evt-card">
+        <div class="evt-img-wrap">
+          <img class="evt-img" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=750&auto=format&fit=crop&q=80" alt="" onerror="this.style.display='none'"/>
+          <div class="evt-img-overlay"></div>
+          <div class="evt-tag-wrap"><span class="evt-tag">Free event</span></div>
+        </div>
+        <div class="evt-body">
+          <div class="evt-title">Protecting Regional Wealth — Estate Planning Briefing</div>
+          <div class="evt-meta-row">
+            <span class="evt-meta"><i class="ti ti-calendar" aria-hidden="true"></i>Tuesday 22 July 2026</span>
+            <span class="evt-meta"><i class="ti ti-clock" aria-hidden="true"></i>6:00 – 7:30 pm</span>
+          </div>
+          <div class="evt-meta-row">
+            <span class="evt-meta"><i class="ti ti-map-pin" aria-hidden="true"></i>Colac Otway Performing Arts Centre</span>
+          </div>
+          <div class="evt-desc">Kane Leersen and guest solicitor Amanda Briggs walk through the essentials of wills, powers of attorney, and structuring assets for the next generation. Light refreshments provided.</div>
+          <button class="cta-outline" style="margin-top:2px">Register interest</button>
+        </div>
+      </div>
       <div class="sec-title">Your adviser</div>
       <div class="card"><div class="ci">
         <div class="av-row">
