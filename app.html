@@ -420,7 +420,7 @@
             </div>
           </div>
           <div class="video-player" id="pv1-player">
-            <video id="pv1-vid" controls>
+            <video id="pv1-vid" controls playsinline>
               <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4"/>
             </video>
           </div>
@@ -724,7 +724,7 @@ function tCmt(id){document.getElementById(id).classList.toggle('open');}
 function togFdr(fid,aid){var f=document.getElementById(fid),a=document.getElementById(aid),o=f.classList.contains('open');f.classList.toggle('open');a.style.transform=o?'rotate(0deg)':'rotate(180deg)';a.style.transition='transform .18s';}
 var pdfPages={pdf1:1};
 function pdfNav(id,dir){var cur=pdfPages[id],next=cur+dir;if(next<1||next>3)return;document.getElementById(id+'-p'+cur).classList.remove('active');document.getElementById(id+'-p'+next).classList.add('active');pdfPages[id]=next;document.getElementById(id+'-num').textContent=next+' / 3';document.getElementById(id+'-prev').disabled=next===1;document.getElementById(id+'-next').disabled=next===3;}
-function playVideo(id){var overlay=document.querySelector('#'+id+' .post-video-overlay'),player=document.getElementById(id+'-player'),vid=document.getElementById(id+'-vid');if(overlay)overlay.style.display='none';player.classList.add('playing');if(vid){vid.load();vid.play();}}
+function playVideo(id){var overlay=document.querySelector('#'+id+' .post-video-overlay'),player=document.getElementById(id+'-player'),vid=document.getElementById(id+'-vid');if(overlay)overlay.style.display='none';player.classList.add('playing');if(vid){var p=vid.play();if(p)p.catch(function(){});}}
 document.getElementById('ph-input').addEventListener('keydown',function(e){if(e.key==='Enter')sendMsg('ph');});
 document.getElementById('ch-input').addEventListener('keydown',function(e){if(e.key==='Enter')sendMsg('ch');});
 (function(){
