@@ -1,0 +1,10 @@
+{
+  "name": "Regional Prosperity Demo",
+  "short_name": "RP Demo",
+  "description": "Regional Prosperity client experience demo",
+  "start_url": "./landing.html",
+  "display": "standalone",
+  "background_color": "#1A2332",
+  "theme_color": "#1A2332",
+  "orientation": "portrait"
+}

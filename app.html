@@ -7,6 +7,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="theme-color" content="#1A2332">
+  <link rel="manifest" href="manifest.json">
   <title>Regional Prosperity — Demo</title>
 <script>(function(){var p=new URLSearchParams(location.search);window.__rpStage=p.get('stage')==='client'?'ch':'ph';var t=p.get('theme');window.__rpTheme=(['navy','forest','dusk','sky'].indexOf(t)>=0)?t:'navy';})();</script>
 <style id="__rp_loading">#app{visibility:hidden;}</style>
@@ -277,6 +278,12 @@
 .disclaimer-heading{font-family:'Playfair Display',serif;font-size:20px;color:var(--t);font-weight:600;margin-bottom:12px;}
 .disclaimer-body{font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:22px;}
 .disclaimer-btn{background:var(--a);color:var(--p);border:none;border-radius:12px;padding:13px 24px;font-size:14px;font-weight:700;font-family:'Inter',sans-serif;cursor:pointer;width:100%;}
+.install-banner{display:none;align-items:center;gap:10px;background:#1A2332;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.1);}
+.install-banner.visible{display:flex;}
+.install-banner-text{flex:1;font-size:12px;color:rgba(255,255,255,.85);line-height:1.4;}
+.install-banner-text strong{color:#fff;display:block;margin-bottom:1px;}
+.install-banner-icon{font-size:22px;color:var(--a);flex-shrink:0;}
+.install-banner-dismiss{font-size:18px;color:rgba(255,255,255,.4);cursor:pointer;padding:2px 4px;flex-shrink:0;}
 @media(max-width:500px){
   .wrapper{background:var(--s2);padding:0;display:block;}
   .phone{width:100%;height:100vh;height:100dvh;min-height:unset;border-radius:0;box-shadow:none;}
@@ -305,6 +312,14 @@
   <div class="status-bar">
     <span class="status-time">9:41</span>
     <div class="status-icons"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div>
+  </div>
+  <div class="install-banner" id="install-banner">
+    <i class="ti ti-device-mobile install-banner-icon" aria-hidden="true"></i>
+    <div class="install-banner-text">
+      <strong>Add to Home Screen for full screen</strong>
+      Tap <strong>Share</strong> then <strong>Add to Home Screen</strong>
+    </div>
+    <span class="install-banner-dismiss" onclick="dismissInstallBanner()" aria-label="Dismiss">×</span>
   </div>
   <div class="app-header">
     <div class="rp-logo-wrap">
@@ -911,6 +926,8 @@ function openSettings(){var o=document.getElementById('settings-overlay'),s=docu
 function closeSettings(){var o=document.getElementById('settings-overlay'),s=document.getElementById('settings-sheet');s.classList.remove('open');setTimeout(function(){o.classList.remove('open');},280);}
 function togSetting(id){document.getElementById(id).classList.toggle('toggle-on');}
 function acceptDisclaimer(){localStorage.setItem('rp_disclaimer_accepted','1');document.getElementById('disclaimer-overlay').style.display='none';}
+function initInstallBanner(){var isIOS=/iPhone|iPad|iPod/.test(navigator.userAgent);var isStandalone=window.navigator.standalone===true||window.matchMedia('(display-mode: standalone)').matches;if(isIOS&&!isStandalone&&!sessionStorage.getItem('rp_banner_dismissed')){document.getElementById('install-banner').classList.add('visible');}}
+function dismissInstallBanner(){sessionStorage.setItem('rp_banner_dismissed','1');document.getElementById('install-banner').classList.remove('visible');}
 function initDisclaimer(){if(!localStorage.getItem('rp_disclaimer_accepted')){document.getElementById('disclaimer-overlay').style.display='flex';}else{document.getElementById('disclaimer-overlay').style.display='none';}}
 document.getElementById('ph-input').addEventListener('keydown',function(e){if(e.key==='Enter')sendMsg('ph');});
 document.getElementById('ch-input').addEventListener('keydown',function(e){if(e.key==='Enter')sendMsg('ch');});
@@ -924,6 +941,7 @@ document.getElementById('ch-input').addEventListener('keydown',function(e){if(e.
   switchTab(lc,'home');
   var ls=document.getElementById('__rp_loading');if(ls)ls.parentNode.removeChild(ls);
   initDisclaimer();
+  initInstallBanner();
 })();
 </script>
 
