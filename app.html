@@ -190,6 +190,8 @@
 .fitem-name{font-size:15px;color:var(--t);flex:1;}
 .fitem-tag{font-size:12px;font-weight:600;padding:2px 7px;border-radius:6px;background:var(--s2);color:var(--t3);}
 .fitem-new{background:var(--al);color:var(--a);}
+.fitem-link{cursor:pointer;-webkit-tap-highlight-color:rgba(0,0,0,.06);}
+.fitem-link:active{background:var(--s2);}
 .prof-hero{background:var(--p);padding:24px 20px 20px;display:flex;flex-direction:column;align-items:center;gap:9px;position:relative;overflow:hidden;}
 .prof-hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;border-radius:50%;background:rgba(200,147,58,.07);}
 .prof-av-wrap{position:relative;z-index:1;}
@@ -777,9 +779,9 @@
         <div class="fdr open" onclick="togFdr('cf-acc','ca-acc')">
           <div class="fdr-hdr"><div class="fdr-icon fi-gold"><i class="ti ti-building-bank"></i></div><div><div class="fdr-label">Accounts</div><div class="fdr-count">3 accounts · $1,009,000</div></div><i class="ti ti-chevron-down fdr-arr" id="ca-acc" style="transform:rotate(180deg)"></i></div>
           <div class="fdr-files open" id="cf-acc">
-            <div class="fitem"><i class="ti ti-chart-pie"></i><div style="flex:1"><div class="fitem-name">SMSF — Macquarie</div></div><span class="fitem-tag" style="font-size:14px;font-weight:600;color:var(--t)">$847,000</span></div>
-            <div class="fitem"><i class="ti ti-trending-up"></i><div style="flex:1"><div class="fitem-name">Investment — CommSec</div></div><span class="fitem-tag" style="font-size:14px;font-weight:600;color:var(--t)">$124,000</span></div>
-            <div class="fitem"><i class="ti ti-home-dollar"></i><div style="flex:1"><div class="fitem-name">Offset account — ANZ</div></div><span class="fitem-tag" style="font-size:14px;font-weight:600;color:var(--t)">$38,000</span></div>
+            <div class="fitem fitem-link" onclick="window.open('https://online.macquarie.com.au','_blank')"><i class="ti ti-chart-pie"></i><div style="flex:1"><div class="fitem-name">SMSF — Macquarie</div></div><span class="fitem-tag" style="font-size:14px;font-weight:600;color:var(--t)">$847,000</span><i class="ti ti-chevron-right" style="font-size:16px;color:var(--t3);margin-left:4px"></i></div>
+            <div class="fitem fitem-link" onclick="window.open('https://www.commsec.com.au','_blank')"><i class="ti ti-trending-up"></i><div style="flex:1"><div class="fitem-name">Investment — CommSec</div></div><span class="fitem-tag" style="font-size:14px;font-weight:600;color:var(--t)">$124,000</span><i class="ti ti-chevron-right" style="font-size:16px;color:var(--t3);margin-left:4px"></i></div>
+            <div class="fitem fitem-link" onclick="window.open('https://www.anz.com.au','_blank')"><i class="ti ti-home-dollar"></i><div style="flex:1"><div class="fitem-name">Offset account — ANZ</div></div><span class="fitem-tag" style="font-size:14px;font-weight:600;color:var(--t)">$38,000</span><i class="ti ti-chevron-right" style="font-size:16px;color:var(--t3);margin-left:4px"></i></div>
           </div>
         </div>
         <div class="fdr open" onclick="togFdr('cf-prop','ca-prop')">
