@@ -1,0 +1,753 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#1A2332">
+  <title>Regional Prosperity — Demo</title>
+<script>(function(){var p=new URLSearchParams(location.search);window.__rpStage=p.get('stage')==='client'?'ch':'ph';var t=p.get('theme');window.__rpTheme=(['navy','forest','dusk','sky'].indexOf(t)>=0)?t:'navy';})();</script>
+<style id="__rp_loading">#app{visibility:hidden;}</style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap');
+:root{--p:#1A2332;--a:#C8933A;--s:#FAF8F4;--s2:#F0EDE6;--t:#1A2332;--t2:#4A5A6A;--t3:#8A9BAA;--b:rgba(26,35,50,0.11);--al:rgba(200,147,58,0.13);--fd:'Playfair Display',serif;--fb:'Inter',sans-serif;}
+.th-fw{--p:#2A3D2A;--a:#D4A843;--s:#F8F5EE;--s2:#EDE9DF;--t:#2A3D2A;--t2:#4A5A4A;--t3:#8A9A8A;--b:rgba(42,61,42,0.11);--al:rgba(212,168,67,0.13);}
+.th-dc{--p:#3D2820;--a:#C46A3A;--s:#FAF4F0;--s2:#F0E8E0;--t:#3D2820;--t2:#6A4A3A;--t3:#AA8A7A;--b:rgba(61,40,32,0.11);--al:rgba(196,106,58,0.13);}
+.th-sg{--p:#1E3A5F;--a:#C8933A;--s:#F4F8FC;--s2:#E6EDF5;--t:#1E3A5F;--t2:#3A5A7A;--t3:#7A9BAA;--b:rgba(30,58,95,0.11);--al:rgba(200,147,58,0.13);}
+*{box-sizing:border-box;margin:0;padding:0;}
+.wrapper{font-family:var(--fb);background:#CCC9C2;min-height:600px;display:flex;flex-direction:column;align-items:center;padding:14px 0 28px;}
+.controls{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;justify-content:center;align-items:center;padding:0 12px;}
+.ctrl-label{font-size:11px;color:#555;text-transform:uppercase;letter-spacing:.08em;}
+.lc-select{font-family:'Inter',sans-serif;font-size:12px;font-weight:600;padding:6px 28px 6px 12px;border-radius:20px;border:none;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%23888' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;box-shadow:0 1px 4px rgba(0,0,0,.12);}
+.lc-select.prospect{background:#2D4A6B;color:#fff;}
+.lc-select.client{background:#1A2332;color:#C8933A;}
+.divider{width:1px;height:18px;background:rgba(0,0,0,.15);}
+.theme-btn{padding:5px 10px;border-radius:14px;border:2px solid transparent;font-size:11px;cursor:pointer;font-weight:600;transition:all .18s;}
+.tb0{background:#1A2332;color:#C8933A;}.tb1{background:#2A3D2A;color:#D4A843;}.tb2{background:#3D2820;color:#C46A3A;}.tb3{background:#1E3A5F;color:#C8933A;}
+.theme-btn.active{outline:3px solid white;outline-offset:1px;}
+.phone{width:375px;min-height:820px;background:var(--s);border-radius:30px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 28px 72px rgba(0,0,0,.22),0 4px 18px rgba(0,0,0,.1);}
+.status-bar{background:var(--p);padding:10px 20px 8px;display:flex;justify-content:space-between;align-items:center;}
+.status-time{color:rgba(255,255,255,.9);font-size:13px;font-weight:500;}
+.status-icons{color:rgba(255,255,255,.7);font-size:13px;display:flex;gap:6px;}
+.app-header{background:var(--p);padding:4px 18px 14px;display:flex;align-items:center;justify-content:space-between;}
+.rp-logo-wrap{display:flex;align-items:center;gap:9px;}
+.rp-icon svg path{fill:#00BF7D;}
+.rp-wordmark{font-family:'Playfair Display',serif;color:rgba(255,255,255,.9);font-size:15px;font-weight:500;letter-spacing:.01em;line-height:1;}
+.hdr-icons{display:flex;gap:14px;align-items:center;}
+.hdr-icon{color:rgba(255,255,255,.65);font-size:21px;cursor:pointer;position:relative;}
+.ndot{position:absolute;top:-2px;right:-3px;width:7px;height:7px;background:var(--a);border-radius:50%;border:1.5px solid var(--p);}
+.screen{flex:1;overflow-y:auto;overflow-x:hidden;background:var(--s2);}
+.screen::-webkit-scrollbar{display:none;}
+.tab-bar{background:var(--s);border-top:1px solid var(--b);display:flex;padding:8px 0 14px;}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:4px 2px;}
+.tab i{font-size:22px;color:var(--t3);transition:color .15s;}
+.tab span{font-size:10px;color:var(--t3);font-weight:500;transition:color .15s;}
+.tab.active i,.tab.active span{color:var(--a);}
+.tbw{position:relative;display:inline-block;}
+.tbw .bdg{position:absolute;top:-5px;right:-10px;background:var(--a);color:var(--p);font-size:9px;font-weight:700;min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 3px;}
+.page{display:none;}.page.active{display:block;animation:fs .2s ease;}
+@keyframes fs{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:var(--p);padding:18px 20px 24px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:rgba(200,147,58,.07);}
+.hero::after{content:'';position:absolute;bottom:-40px;left:0;width:150px;height:150px;border-radius:50%;background:rgba(200,147,58,.04);}
+.hero-client{background:var(--p);position:relative;overflow:hidden;}
+.hero-client-bg{width:100%;height:160px;object-fit:cover;object-position:center top;display:block;opacity:.35;filter:grayscale(20%);}
+.hero-client-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(26,35,50,.3) 0%,rgba(26,35,50,.95) 100%);}
+.hero-client-content{position:relative;z-index:1;padding:0 20px 20px;margin-top:-60px;}
+.hero-client-avatar{width:56px;height:56px;border-radius:50%;border:2.5px solid var(--a);object-fit:cover;object-position:center top;margin-bottom:8px;}
+.h-greet{color:rgba(255,255,255,.58);font-size:13px;margin-bottom:3px;}
+.h-name{font-family:var(--fd);color:#fff;font-size:24px;font-weight:600;margin-bottom:10px;}
+.h-stage{display:inline-block;background:rgba(200,147,58,.18);color:var(--a);font-size:10px;font-weight:700;border-radius:10px;padding:3px 10px;border:1px solid rgba(200,147,58,.3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;}
+.ai-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.11);border-radius:13px;padding:13px 15px;position:relative;z-index:1;}
+.ai-lbl{font-size:10px;color:var(--a);text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin-bottom:5px;display:flex;align-items:center;gap:5px;}
+.ai-text{color:rgba(255,255,255,.83);font-size:13px;line-height:1.56;}
+.sec-title{font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:600;color:var(--t3);padding:14px 20px 7px;}
+.card{background:var(--s);border-radius:14px;margin:0 12px 10px;border:1px solid var(--b);overflow:hidden;}
+.ci{padding:14px 16px;}
+.stat-row{display:flex;gap:8px;padding:0 12px 10px;}
+.stat-box{flex:1;background:var(--s);border-radius:12px;padding:11px 12px;border:1px solid var(--b);}
+.sl{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px;}
+.sv{font-family:var(--fd);font-size:19px;color:var(--t);font-weight:600;}
+.sc{font-size:10px;margin-top:2px;}.sup{color:#3A7A3A;}.snu{color:var(--t3);}
+.prog-bg{background:var(--s2);border-radius:4px;height:6px;margin:10px 0 6px;}
+.prog-fill{height:6px;border-radius:4px;background:var(--a);}
+.prog-meta{display:flex;justify-content:space-between;font-size:11px;color:var(--t3);}
+.cta{background:var(--a);color:var(--p);border:none;border-radius:9px;padding:10px 16px;font-size:13px;font-weight:700;font-family:var(--fb);cursor:pointer;width:100%;margin-top:11px;}
+.cta-outline{background:none;color:var(--a);border:1.5px solid var(--a);border-radius:9px;padding:9px 16px;font-size:13px;font-weight:600;font-family:var(--fb);cursor:pointer;width:100%;margin-top:8px;}
+.av{width:42px;height:42px;border-radius:50%;background:var(--al);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:15px;color:var(--a);font-weight:600;flex-shrink:0;border:1.5px solid var(--b);}
+.av-row{display:flex;align-items:center;gap:11px;}
+.av-name{font-size:14px;font-weight:500;color:var(--t);}
+.av-sub{font-size:11px;color:var(--t3);margin-top:1px;}
+.av-actions{margin-left:auto;display:flex;gap:8px;}
+.av-btn{width:32px;height:32px;border-radius:8px;background:var(--s2);border:1px solid var(--b);display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.av-btn i{font-size:16px;color:var(--a);}
+.review-items{display:flex;flex-direction:column;gap:8px;margin-top:10px;}
+.rev-item{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--s2);border-radius:9px;cursor:pointer;}
+.rev-item i{font-size:18px;color:var(--a);flex-shrink:0;}
+.rev-item-label{font-size:13px;color:var(--t);flex:1;}
+.rev-item-status{font-size:11px;font-weight:600;padding:3px 8px;border-radius:8px;}
+.rs-done{background:rgba(58,122,58,.12);color:#3A7A3A;}.rs-todo{background:var(--al);color:var(--a);}
+.msg-list-hdr{background:var(--s);padding:14px 20px 10px;border-bottom:1px solid var(--b);}
+.msg-list-title{font-family:var(--fd);font-size:20px;color:var(--t);font-weight:500;}
+.msg-list-sub{font-size:12px;color:var(--t3);margin-top:2px;}
+.msg-item{display:flex;gap:11px;padding:13px 20px;cursor:pointer;border-bottom:1px solid var(--b);background:var(--s);}
+.msg-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px;}
+.msg-sender{font-size:14px;font-weight:500;color:var(--t);}
+.msg-time{font-size:11px;color:var(--t3);}
+.msg-prev{font-size:13px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px;}
+.msg-unread .msg-sender{font-weight:700;}.msg-unread .msg-prev{color:var(--t);font-weight:500;}
+.udot{width:8px;height:8px;border-radius:50%;background:var(--a);flex-shrink:0;align-self:center;margin-left:4px;}
+.thread-view{display:none;flex-direction:column;background:var(--s2);}
+.thread-view.open{display:flex;}
+.thread-hdr{background:var(--s);border-bottom:1px solid var(--b);padding:11px 14px;display:flex;align-items:center;gap:10px;}
+.thread-back{font-size:22px;color:var(--a);cursor:pointer;}
+.thread-msgs{flex:1;overflow-y:auto;padding:14px 14px 8px;display:flex;flex-direction:column;gap:9px;min-height:300px;max-height:380px;}
+.thread-msgs::-webkit-scrollbar{display:none;}
+.bw{display:flex;flex-direction:column;}.bw.mine{align-items:flex-end;}.bw.theirs{align-items:flex-start;}
+.bubble{max-width:74%;padding:10px 13px;border-radius:16px;font-size:13px;line-height:1.5;}
+.bubble.mine{background:var(--p);color:rgba(255,255,255,.9);border-bottom-right-radius:4px;}
+.bubble.theirs{background:var(--s);color:var(--t);border-bottom-left-radius:4px;border:1px solid var(--b);}
+.btime{font-size:10px;color:var(--t3);margin-top:2px;padding:0 2px;}
+.action-bub{background:var(--al);border:1px solid rgba(200,147,58,.28);border-radius:13px;padding:11px 14px;max-width:85%;}
+.abub-lbl{font-size:10px;font-weight:700;color:var(--a);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;display:flex;align-items:center;gap:4px;}
+.abub-text{font-size:13px;color:var(--t);line-height:1.45;}
+.abub-btn{margin-top:9px;background:var(--a);color:var(--p);border:none;border-radius:7px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;}
+.tinput-row{background:var(--s);border-top:1px solid var(--b);padding:10px 12px;display:flex;gap:8px;align-items:center;}
+.tinput{flex:1;border:1px solid var(--b);border-radius:20px;padding:8px 14px;font-size:13px;font-family:var(--fb);color:var(--t);background:var(--s2);outline:none;}
+.tsend{width:34px;height:34px;border-radius:50%;background:var(--a);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;}
+.tsend i{font-size:16px;color:var(--p);}
+.feed-pg-hdr{background:var(--s);padding:14px 20px 10px;border-bottom:1px solid var(--b);}
+.feed-pg-title{font-family:var(--fd);font-size:20px;color:var(--t);font-weight:500;}
+.feed-pg-sub{font-size:12px;color:var(--t3);margin-top:2px;}
+.post{background:var(--s);margin-bottom:8px;border-bottom:1px solid var(--b);}
+.post-hdr{display:flex;align-items:center;gap:10px;padding:13px 16px 8px;}
+.pav{width:38px;height:38px;border-radius:50%;background:var(--al);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:14px;color:var(--a);font-weight:600;flex-shrink:0;}
+.pav.sec{background:rgba(74,90,106,.1);color:var(--t2);}
+.pmeta{flex:1;}.pauthor{font-size:13px;font-weight:600;color:var(--t);}.ptime{font-size:11px;color:var(--t3);}
+.ptag{background:var(--al);color:var(--a);font-size:10px;font-weight:700;border-radius:10px;padding:3px 8px;text-transform:uppercase;letter-spacing:.06em;}
+.ptag.green{background:rgba(58,122,58,.1);color:#3A7A3A;}.ptag.blue{background:rgba(40,90,180,.1);color:#2A5AB4;}.ptag.edu{background:rgba(100,60,160,.1);color:#6433A0;}
+.ptitle{font-family:var(--fd);font-size:16px;color:var(--t);padding:0 16px 7px;font-weight:500;line-height:1.35;}
+.pbody{font-size:13px;color:var(--t2);padding:0 16px 12px;line-height:1.6;}
+.pactions{display:flex;border-top:1px solid var(--b);}
+.pa{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;padding:10px;cursor:pointer;font-size:12px;color:var(--t3);border-right:1px solid var(--b);}
+.pa:last-child{border-right:none;}.pa i{font-size:17px;}.pa.liked{color:var(--a);}
+.pcomments{padding:8px 16px 4px;display:none;}.pcomments.open{display:block;}
+.cmt{display:flex;gap:8px;margin-bottom:8px;}
+.cav{width:26px;height:26px;border-radius:50%;background:var(--s2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--t2);flex-shrink:0;border:1px solid var(--b);}
+.cbub{background:var(--s2);border-radius:10px;padding:7px 10px;font-size:12px;color:var(--t);line-height:1.45;}
+.cname{font-weight:700;font-size:11px;margin-bottom:1px;}
+.pchart{padding:0 16px 8px;}.sparksvg{width:100%;height:52px;}
+.notice-bar{background:var(--al);border-bottom:1px solid rgba(200,147,58,.22);padding:9px 16px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--t);}
+.notice-bar i{color:var(--a);font-size:16px;flex-shrink:0;}
+.post-video{position:relative;background:#000;overflow:hidden;}
+.post-video-thumb{width:100%;height:180px;object-fit:cover;display:block;opacity:.75;}
+.post-video-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;}
+.play-btn{width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(0,0,0,.3);}
+.play-btn i{font-size:22px;color:var(--p);margin-left:3px;}
+.vid-dur{color:rgba(255,255,255,.85);font-size:12px;font-weight:500;text-shadow:0 1px 4px rgba(0,0,0,.5);}
+.video-player{display:none;}.video-player.playing{display:block;}
+.video-player video{width:100%;height:180px;background:#000;display:block;}
+.pdf-viewer{margin:0 16px 12px;border:1px solid var(--b);border-radius:10px;overflow:hidden;}
+.pdf-header{background:var(--s2);padding:8px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--b);}
+.pdf-title{font-size:11px;font-weight:600;color:var(--t);display:flex;align-items:center;gap:6px;}
+.pdf-title i{color:#C04A4A;font-size:16px;}
+.pdf-nav{display:flex;align-items:center;gap:8px;}
+.pdf-page-btn{width:24px;height:24px;border-radius:6px;border:1px solid var(--b);background:var(--s);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--t2);}
+.pdf-page-btn i{font-size:13px;}.pdf-page-btn:disabled{opacity:.35;cursor:not-allowed;}
+.pdf-page-num{font-size:11px;color:var(--t3);min-width:36px;text-align:center;}
+.pdf-canvas{background:white;width:100%;min-height:200px;}
+.pdf-page{display:none;padding:16px;font-family:var(--fb);}.pdf-page.active{display:block;}
+.pdf-page-title{font-family:var(--fd);font-size:15px;color:#1A2332;font-weight:600;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid #C8933A;}
+.pdf-section{margin-bottom:12px;}
+.pdf-section-title{font-size:11px;font-weight:700;color:#1A2332;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;}
+.pdf-body{font-size:12px;color:#333;line-height:1.6;}
+.pdf-highlight{background:#FFF8EC;border-left:3px solid #C8933A;padding:8px 10px;border-radius:0 6px 6px 0;font-size:12px;color:#3D2800;margin:8px 0;font-style:italic;}
+.pdf-table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;}
+.pdf-table th{background:#1A2332;color:#C8933A;padding:5px 8px;text-align:left;font-weight:600;}
+.pdf-table td{padding:5px 8px;border-bottom:1px solid #eee;color:#333;}
+.pdf-table tr:last-child td{border-bottom:none;}
+.lib-pg-hdr{background:var(--s);padding:14px 20px 10px;border-bottom:1px solid var(--b);}
+.lib-pg-title{font-family:var(--fd);font-size:20px;color:var(--t);font-weight:500;}
+.lib-pg-sub{font-size:12px;color:var(--t3);margin-top:2px;}
+.lib-sec{padding:0 12px 8px;}
+.fdr{background:var(--s);border-radius:13px;border:1px solid var(--b);margin-bottom:9px;overflow:hidden;cursor:pointer;}
+.fdr-hdr{display:flex;align-items:center;gap:11px;padding:12px 14px;}
+.fdr-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.fdr-icon i{font-size:18px;}
+.fi-gold{background:var(--al);}.fi-gold i{color:var(--a);}
+.fi-green{background:rgba(58,122,58,.1);}.fi-green i{color:#3A7A3A;}
+.fi-blue{background:rgba(40,90,180,.1);}.fi-blue i{color:#2A5AB4;}
+.fdr-label{font-size:14px;font-weight:500;color:var(--t);}
+.fdr-count{font-size:11px;color:var(--t3);margin-top:1px;}
+.fdr-arr{margin-left:auto;font-size:18px;color:var(--t3);transition:transform .18s;}
+.fdr-files{border-top:1px solid var(--b);display:none;}.fdr-files.open{display:block;}
+.fitem{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--b);}
+.fitem:last-child{border-bottom:none;}.fitem i{font-size:17px;color:var(--t3);}
+.fitem-name{font-size:13px;color:var(--t);flex:1;}
+.fitem-tag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:6px;background:var(--s2);color:var(--t3);}
+.fitem-new{background:var(--al);color:var(--a);}
+.prof-hero{background:var(--p);padding:24px 20px 20px;display:flex;flex-direction:column;align-items:center;gap:9px;position:relative;overflow:hidden;}
+.prof-hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;border-radius:50%;background:rgba(200,147,58,.07);}
+.prof-av-wrap{position:relative;z-index:1;}
+.prof-av{width:72px;height:72px;border-radius:50%;border:2.5px solid var(--a);object-fit:cover;object-position:center top;}
+.prof-av-fallback{width:72px;height:72px;border-radius:50%;background:var(--al);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:26px;color:var(--a);font-weight:600;border:2.5px solid rgba(200,147,58,.4);}
+.prof-name{font-family:var(--fd);font-size:21px;color:#fff;font-weight:600;position:relative;z-index:1;}
+.prof-stage-badge{background:rgba(200,147,58,.18);color:var(--a);font-size:10px;font-weight:700;border-radius:10px;padding:4px 11px;border:1px solid rgba(200,147,58,.3);text-transform:uppercase;letter-spacing:.08em;position:relative;z-index:1;}
+.prof-sec{background:var(--s);border-radius:12px;margin:8px 12px 0;border:1px solid var(--b);overflow:hidden;}
+.prof-row{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--b);}
+.prof-row:last-child{border-bottom:none;}
+.prl{font-size:13px;color:var(--t2);display:flex;align-items:center;gap:8px;}
+.prl i{font-size:16px;color:var(--t3);}
+.prv{font-size:13px;color:var(--t);font-weight:500;}.prv.acc{color:var(--a);}
+.logout-btn{background:none;border:1px solid rgba(180,50,50,.3);border-radius:10px;color:#B43232;padding:11px;font-size:13px;font-weight:600;font-family:var(--fb);cursor:pointer;width:calc(100% - 24px);margin:10px 12px 4px;display:flex;align-items:center;justify-content:center;gap:6px;}
+.referral-card{margin:10px 12px 16px;background:linear-gradient(135deg,var(--p) 0%,rgba(26,35,50,.85) 100%);border-radius:14px;padding:16px;position:relative;overflow:hidden;}
+.referral-card::before{content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:rgba(200,147,58,.1);}
+.referral-title{font-family:var(--fd);color:#fff;font-size:15px;font-weight:500;margin-bottom:4px;position:relative;z-index:1;}
+.referral-sub{font-size:12px;color:rgba(255,255,255,.62);margin-bottom:12px;line-height:1.45;position:relative;z-index:1;}
+.referral-body{display:flex;gap:12px;align-items:center;position:relative;z-index:1;}
+.qr-wrap{background:white;border-radius:10px;padding:8px;flex-shrink:0;}
+.qr-link{font-size:11px;color:var(--a);font-weight:600;word-break:break-all;margin-bottom:8px;}
+.referral-share-btn{background:var(--a);color:var(--p);border:none;border-radius:8px;padding:7px 12px;font-size:12px;font-weight:700;font-family:var(--fb);cursor:pointer;display:flex;align-items:center;gap:5px;}
+.edu-card{background:var(--p);border-radius:14px;margin:0 12px 10px;overflow:hidden;cursor:pointer;position:relative;}
+.edu-img{width:100%;height:100px;object-fit:cover;opacity:.45;display:block;}
+.edu-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(26,35,50,.92) 40%,rgba(26,35,50,.5) 100%);padding:14px 16px;display:flex;flex-direction:column;justify-content:center;}
+.edu-tag{font-size:10px;font-weight:700;color:var(--a);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;}
+.edu-title{font-family:var(--fd);color:#fff;font-size:14px;font-weight:500;line-height:1.35;margin-bottom:5px;}
+.edu-meta{font-size:11px;color:rgba(255,255,255,.5);}
+</style>
+</head>
+<body>
+<div class="wrapper" id="app">
+<div class="controls">
+  <span class="ctrl-label">Stage</span>
+  <select class="lc-select prospect" id="lcsel" onchange="setLifecycle(this)">
+    <option value="prospect">Prospect — Sarah</option>
+    <option value="client">Client — Sarah</option>
+  </select>
+  <div class="divider"></div>
+  <span class="ctrl-label">Brand</span>
+  <button class="theme-btn tb0 active" onclick="setTheme(0,this)">Navy & Gold</button>
+  <button class="theme-btn tb1" onclick="setTheme(1,this)">Forest</button>
+  <button class="theme-btn tb2" onclick="setTheme(2,this)">Dusk</button>
+  <button class="theme-btn tb3" onclick="setTheme(3,this)">Sky</button>
+</div>
+
+<div class="phone" id="phone">
+  <div class="status-bar">
+    <span class="status-time">9:41</span>
+    <div class="status-icons"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div>
+  </div>
+  <div class="app-header">
+    <div class="rp-logo-wrap">
+      <span class="rp-icon">
+        <svg width="28" height="28" viewBox="0 0 35.51 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0.461384V35.9654H13.6739V33.4098C13.6533 29.3317 10.3307 26.0205 6.24799 26.0205V22.7829C9.13433 22.7829 11.7497 23.9402 13.6716 25.807V9.54521C13.7451 6.01592 16.5442 3.13647 20.0804 3.13647C23.6166 3.13647 26.4891 6.01133 26.4891 9.54521C26.4891 13.0791 23.6143 15.9539 20.0804 15.9539C20.0689 15.9539 20.0574 15.9539 20.0482 15.9539V12.7163C20.0482 12.7163 20.0712 12.7163 20.0804 12.7163C21.8301 12.7163 23.2537 11.2926 23.2537 9.54291C23.2537 7.79319 21.8301 6.36954 20.0804 6.36954C19.217 6.36954 18.434 6.71626 17.8622 7.27884H17.8645C17.2721 7.86667 16.9667 8.65427 16.9208 9.67608V9.70135C16.9208 9.70135 16.9208 9.72201 16.9208 9.73349C16.9208 9.74038 16.9208 9.74726 16.9208 9.75415L16.9162 15.1112C16.9162 15.1112 16.9139 15.1112 16.9116 15.1089V22.7645C19.7658 19.0538 24.2457 16.6566 29.2767 16.6566V19.8942C22.4616 19.8942 16.9162 25.4396 16.9162 32.2547V35.9034H16.9139V35.9608H35.5063V0.456787H0.00229846L0 0.461384ZM8.52354 16.6084C7.25603 16.6084 6.22733 15.5797 6.22733 14.3121C6.22733 13.0446 7.25603 12.0159 8.52354 12.0159C9.79105 12.0159 10.8198 13.0446 10.8198 14.3121C10.8198 15.5797 9.79105 16.6084 8.52354 16.6084Z" fill="#00BF7D"/>
+        </svg>
+      </span>
+      <span class="rp-wordmark">Regional Prosperity</span>
+    </div>
+    <div class="hdr-icons">
+      <span class="hdr-icon"><i class="ti ti-bell" aria-hidden="true"></i><span class="ndot"></span></span>
+      <span class="hdr-icon"><i class="ti ti-settings" aria-hidden="true"></i></span>
+    </div>
+  </div>
+
+  <div class="screen" id="screen">
+
+    <!-- HOME PROSPECT -->
+    <div class="page active" id="ph-home">
+      <div class="hero">
+        <div class="h-greet">Good morning,</div>
+        <div class="h-name">Sarah</div>
+        <div class="h-stage">Prospect</div>
+        <div class="ai-card">
+          <div class="ai-lbl"><i class="ti ti-sparkles" style="font-size:11px" aria-hidden="true"></i>Your briefing</div>
+          <div class="ai-text">You are 65% through onboarding — 3 sections remaining. Kane has reviewed your tax return and has a question about your SMSF contributions. Estimated 12 minutes to complete.</div>
+        </div>
+      </div>
+      <div class="sec-title">Continue your onboarding</div>
+      <div class="card"><div class="ci">
+        <div style="font-family:var(--fd);font-size:15px;color:var(--t);font-weight:500;margin-bottom:3px;">Financial profile</div>
+        <div style="font-size:12px;color:var(--t2);margin-bottom:10px;line-height:1.45;">3 sections left — assets, liabilities and estate planning.</div>
+        <div class="prog-bg"><div class="prog-fill" style="width:65%"></div></div>
+        <div class="prog-meta"><span>65% complete</span><span>7 of 11 sections</span></div>
+        <button class="cta">Continue where I left off</button>
+      </div></div>
+      <div class="sec-title">Worth knowing</div>
+      <div class="edu-card" onclick="switchTab('ph','feed')">
+        <img class="edu-img" src="https://regionalprosperity.au/wp-content/uploads/2026/03/RP-Blog-Financial-Advice-Isnt-Just-for-the-City-1-1024x683.jpg" alt="" onerror="this.style.background='#2A3D50';"/>
+        <div class="edu-overlay">
+          <div class="edu-tag">Education · 4 min read</div>
+          <div class="edu-title">Financial advice isn't just for the city — why regional Australia is leading the way</div>
+          <div class="edu-meta">Kane Leersen · March 2026</div>
+        </div>
+      </div>
+      <div class="sec-title">Your adviser</div>
+      <div class="card"><div class="ci">
+        <div class="av-row">
+          <div class="av">KL</div>
+          <div><div class="av-name">Kane Leersen</div><div class="av-sub">Organisation Leader & Personal Financial Adviser</div></div>
+          <div class="av-actions">
+            <div class="av-btn" onclick="switchTab('ph','messages')"><i class="ti ti-message-circle" aria-hidden="true"></i></div>
+            <div class="av-btn"><i class="ti ti-phone" aria-hidden="true"></i></div>
+          </div>
+        </div>
+      </div></div>
+      <div style="height:16px"></div>
+    </div>
+
+    <!-- HOME CLIENT -->
+    <div class="page" id="ch-home">
+      <div class="hero-client">
+        <img class="hero-client-bg" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=750&auto=format&fit=crop&q=80" alt="" onerror="this.style.display='none'"/>
+        <div class="hero-client-overlay"></div>
+        <div class="hero-client-content">
+          <img class="hero-client-avatar" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&auto=format&fit=crop&q=80&crop=top" alt="Sarah" onerror="this.style.display='none'"/>
+          <div class="h-greet">Good morning,</div>
+          <div class="h-name">Sarah</div>
+          <div class="h-stage">Client</div>
+          <div class="ai-card">
+            <div class="ai-lbl"><i class="ti ti-sparkles" style="font-size:11px" aria-hidden="true"></i>Your briefing</div>
+            <div class="ai-text">Your annual review with Traci is in 18 days. Three items need your attention before the meeting. Your portfolio is up 2.4% this month — your SMSF holdings are performing well.</div>
+          </div>
+        </div>
+      </div>
+      <div class="stat-row" style="padding-top:12px">
+        <div class="stat-box"><div class="sl">Portfolio</div><div class="sv">$847k</div><div class="sc sup">↑ 2.4% this month</div></div>
+        <div class="stat-box"><div class="sl">Annual review</div><div class="sv" style="font-size:15px;padding-top:3px">14 Jul</div><div class="sc snu">18 days away</div></div>
+      </div>
+      <div class="sec-title">Before your review</div>
+      <div class="card"><div class="ci">
+        <div style="font-family:var(--fd);font-size:15px;color:var(--t);font-weight:500;margin-bottom:4px;">Annual review preparation</div>
+        <div style="font-size:12px;color:var(--t2);margin-bottom:10px;line-height:1.45;">Traci has asked you to complete 3 items before 14 July.</div>
+        <div class="review-items">
+          <div class="rev-item"><i class="ti ti-user-check" aria-hidden="true"></i><span class="rev-item-label">Confirm your personal details</span><span class="rev-item-status rs-done">Done</span></div>
+          <div class="rev-item"><i class="ti ti-home" aria-hidden="true"></i><span class="rev-item-label">Update property valuations</span><span class="rev-item-status rs-todo">To do</span></div>
+          <div class="rev-item"><i class="ti ti-upload" aria-hidden="true"></i><span class="rev-item-label">Upload latest payslips</span><span class="rev-item-status rs-todo">To do</span></div>
+        </div>
+        <button class="cta" style="margin-top:12px">Continue review prep</button>
+      </div></div>
+      <div class="sec-title">Your adviser</div>
+      <div class="card"><div class="ci">
+        <div class="av-row">
+          <div class="av">TB</div>
+          <div><div class="av-name">Traci Bartlett</div><div class="av-sub">Personal Financial Adviser · Warrnambool</div></div>
+          <div class="av-actions">
+            <div class="av-btn" onclick="switchTab('ch','messages')"><i class="ti ti-message-circle" aria-hidden="true"></i></div>
+            <div class="av-btn"><i class="ti ti-phone" aria-hidden="true"></i></div>
+          </div>
+        </div>
+      </div></div>
+      <div style="height:16px"></div>
+    </div>
+
+    <!-- MESSAGES PROSPECT -->
+    <div class="page" id="ph-messages">
+      <div id="ph-msg-list">
+        <div class="msg-list-hdr"><div class="msg-list-title">Messages</div><div class="msg-list-sub">Conversations with your adviser</div></div>
+        <div style="background:var(--s2)">
+          <div class="msg-item msg-unread" onclick="openThread('ph')">
+            <div class="av" style="font-size:14px">KL</div>
+            <div style="flex:1;min-width:0"><div class="msg-top"><span class="msg-sender">Kane Leersen</span><span class="msg-time">10:24 am</span></div><div class="msg-prev">Could you clarify your SMSF contribution for FY24? I want to make sure we get the tax...</div></div>
+            <div class="udot"></div>
+          </div>
+          <div class="msg-item" onclick="openThread('ph')">
+            <div class="av" style="font-size:14px;background:rgba(74,90,106,.1);color:var(--t2)">RP</div>
+            <div style="flex:1;min-width:0"><div class="msg-top"><span class="msg-sender">Regional Prosperity</span><span class="msg-time">Yesterday</span></div><div class="msg-prev">Welcome to Regional Prosperity, Sarah. Your onboarding link is ready.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="thread-view" id="ph-thread">
+        <div class="thread-hdr">
+          <span class="thread-back" onclick="closeThread('ph')"><i class="ti ti-arrow-left" aria-hidden="true"></i></span>
+          <div class="av" style="width:34px;height:34px;font-size:13px">KL</div>
+          <div><div style="font-size:15px;font-weight:500;color:var(--t)">Kane Leersen</div><div style="font-size:11px;color:var(--t3)">Personal Financial Adviser</div></div>
+        </div>
+        <div class="thread-msgs" id="ph-thread-msgs">
+          <div class="bw theirs"><div class="bubble theirs">Hi Sarah, thanks for uploading your tax return — I've had a chance to review it.</div><div class="btime">10:18 am</div></div>
+          <div class="bw theirs"><div class="bubble theirs">Your SMSF contribution for FY24 looks like it may have exceeded the concessional cap. Can you confirm the exact amount?</div><div class="btime">10:20 am</div></div>
+          <div class="bw theirs" style="align-items:flex-start">
+            <div class="action-bub"><div class="abub-lbl"><i class="ti ti-clipboard-check" style="font-size:11px" aria-hidden="true"></i>Action required</div><div class="abub-text">Please upload your SMSF annual statement so I can verify the contribution figures.</div><button class="abub-btn">Upload document</button></div>
+            <div class="btime">10:21 am</div>
+          </div>
+          <div class="bw mine"><div class="bubble mine">Thanks Kane — it was $27,500 including employer contributions. Uploading now.</div><div class="btime">10:34 am</div></div>
+        </div>
+        <div class="tinput-row"><input class="tinput" id="ph-input" placeholder="Message Kane..."/><button class="tsend" onclick="sendMsg('ph')"><i class="ti ti-send" aria-hidden="true"></i></button></div>
+      </div>
+    </div>
+
+    <!-- MESSAGES CLIENT -->
+    <div class="page" id="ch-messages">
+      <div id="ch-msg-list">
+        <div class="msg-list-hdr"><div class="msg-list-title">Messages</div><div class="msg-list-sub">Your conversations with the team</div></div>
+        <div style="background:var(--s2)">
+          <div class="msg-item msg-unread" onclick="openThread('ch')">
+            <div class="av" style="font-size:14px">TB</div>
+            <div style="flex:1;min-width:0"><div class="msg-top"><span class="msg-sender">Traci Bartlett</span><span class="msg-time">10:42 am</span></div><div class="msg-prev">Before our review, I'd love you to look at the updated investment strategy...</div></div>
+            <div class="udot"></div>
+          </div>
+          <div class="msg-item" onclick="openThread('ch')">
+            <div class="av" style="font-size:14px;background:rgba(74,90,106,.1);color:var(--t2)">RP</div>
+            <div style="flex:1;min-width:0"><div class="msg-top"><span class="msg-sender">Regional Prosperity</span><span class="msg-time">Yesterday</span></div><div class="msg-prev">Your annual review is confirmed for 14 July at 10:00am.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="thread-view" id="ch-thread">
+        <div class="thread-hdr">
+          <span class="thread-back" onclick="closeThread('ch')"><i class="ti ti-arrow-left" aria-hidden="true"></i></span>
+          <div class="av" style="width:34px;height:34px;font-size:13px">TB</div>
+          <div><div style="font-size:15px;font-weight:500;color:var(--t)">Traci Bartlett</div><div style="font-size:11px;color:var(--t3)">Personal Financial Adviser</div></div>
+        </div>
+        <div class="thread-msgs" id="ch-thread-msgs">
+          <div class="bw theirs"><div class="bubble theirs">Hi Sarah! Just 18 days until your annual review — how exciting!</div><div class="btime">10:38 am</div></div>
+          <div class="bw theirs" style="align-items:flex-start">
+            <div class="action-bub"><div class="abub-lbl"><i class="ti ti-file-text" style="font-size:11px" aria-hidden="true"></i>Review requested</div><div class="abub-text">Please review the updated investment strategy document before our meeting on 14 July.</div><button class="abub-btn">Review document</button></div>
+            <div class="btime">10:42 am</div>
+          </div>
+          <div class="bw mine"><div class="bubble mine">Thanks Traci! Does this affect my SMSF allocation?</div><div class="btime">10:51 am</div></div>
+        </div>
+        <div class="tinput-row"><input class="tinput" id="ch-input" placeholder="Message Traci..."/><button class="tsend" onclick="sendMsg('ch')"><i class="ti ti-send" aria-hidden="true"></i></button></div>
+      </div>
+    </div>
+
+    <!-- FEED PROSPECT -->
+    <div class="page" id="ph-feed">
+      <div class="feed-pg-hdr"><div class="feed-pg-title">Updates</div><div class="feed-pg-sub">News and insights from Regional Prosperity</div></div>
+      <div style="padding-bottom:16px">
+        <div class="post">
+          <div class="post-hdr"><div class="pav sec">KL</div><div class="pmeta"><div class="pauthor">Kane Leersen</div><div class="ptime">Today</div></div><div class="ptag">Welcome</div></div>
+          <div class="ptitle">Welcome to Regional Prosperity — what happens next</div>
+          <div class="post-video" id="pv1">
+            <img class="post-video-thumb" src="https://regionalprosperity.au/wp-content/uploads/2024/09/f886632ad5cd6aee0c93f44e02c9cee9.webp" alt="" onerror="this.src='https://images.unsplash.com/photo-1560472355-536de3962603?w=600&auto=format&q=60'"/>
+            <div class="post-video-overlay" onclick="playVideo('pv1')">
+              <div class="play-btn"><i class="ti ti-player-play-filled" aria-hidden="true"></i></div>
+              <div class="vid-dur">Kane Leersen · 3:24</div>
+            </div>
+          </div>
+          <div class="video-player" id="pv1-player">
+            <video id="pv1-vid" controls>
+              <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4"/>
+            </video>
+          </div>
+          <div class="pbody" style="padding-top:10px">A quick introduction to the Regional Prosperity team and what the onboarding journey looks like over the next few weeks.</div>
+          <div class="pactions">
+            <div class="pa" id="pvl1" onclick="tLike('pvl1','pvlc1')"><i class="ti ti-heart" aria-hidden="true"></i><span id="pvlc1">6</span></div>
+            <div class="pa" onclick="tCmt('pvc1')"><i class="ti ti-message-circle" aria-hidden="true"></i><span>1 comment</span></div>
+            <div class="pa"><i class="ti ti-share" aria-hidden="true"></i><span>Share</span></div>
+          </div>
+          <div class="pcomments" id="pvc1"><div class="cmt"><div class="cav">MB</div><div class="cbub"><div class="cname">Mark B.</div>Really reassuring — thanks Kane.</div></div></div>
+        </div>
+        <div class="post">
+          <div class="post-hdr"><div class="pav sec">KL</div><div class="pmeta"><div class="pauthor">Kane Leersen</div><div class="ptime">March 2026</div></div><div class="ptag edu">Education</div></div>
+          <div class="ptitle">Financial advice isn't just for the city</div>
+          <div class="pbody">Regional Australians are leading the way when it comes to building intergenerational wealth. Here's what that means for your family.</div>
+          <img src="https://regionalprosperity.au/wp-content/uploads/2026/03/RP-Blog-Financial-Advice-Isnt-Just-for-the-City-1-1024x683.jpg" style="width:100%;height:140px;object-fit:cover;display:block;" alt="" onerror="this.style.display='none'"/>
+          <div style="padding:12px 16px 4px;font-size:12px;color:var(--t3);display:flex;align-items:center;gap:5px;"><i class="ti ti-file-text" style="color:#C04A4A;font-size:15px" aria-hidden="true"></i>Attached reading — 3 pages</div>
+          <div class="pdf-viewer">
+            <div class="pdf-header">
+              <div class="pdf-title"><i class="ti ti-file-text" aria-hidden="true"></i>Regional Wealth Guide 2025</div>
+              <div class="pdf-nav">
+                <button class="pdf-page-btn" id="pdf1-prev" onclick="pdfNav('pdf1',-1)" disabled><i class="ti ti-chevron-left" aria-hidden="true"></i></button>
+                <span class="pdf-page-num" id="pdf1-num">1 / 3</span>
+                <button class="pdf-page-btn" id="pdf1-next" onclick="pdfNav('pdf1',1)"><i class="ti ti-chevron-right" aria-hidden="true"></i></button>
+              </div>
+            </div>
+            <div class="pdf-canvas">
+              <div class="pdf-page active" id="pdf1-p1">
+                <div class="pdf-page-title">Why Regional Australians Are Building Wealth Faster</div>
+                <div class="pdf-section"><div class="pdf-section-title">The shift is real</div><div class="pdf-body">For decades, wealth management was seen as a city pursuit. That's changing fast. Regional Australians — farmers, business owners, professionals — are accumulating significant assets and increasingly seeking sophisticated advice.</div></div>
+                <div class="pdf-highlight">"The average regional client we work with has more diverse assets than most metropolitan clients — property, business equity, super, and often intergenerational holdings." — Kane Leersen</div>
+              </div>
+              <div class="pdf-page" id="pdf1-p2">
+                <div class="pdf-page-title">The Regional Wealth Snapshot</div>
+                <div class="pdf-section"><div class="pdf-section-title">Average asset composition</div>
+                <table class="pdf-table"><tr><th>Asset type</th><th>% of net worth</th></tr><tr><td>Property (primary)</td><td>38%</td></tr><tr><td>Superannuation (SMSF)</td><td>29%</td></tr><tr><td>Business equity</td><td>21%</td></tr><tr><td>Investment portfolio</td><td>12%</td></tr></table></div>
+                <div class="pdf-highlight">Regional clients with a financial plan accumulate 2.3× more wealth over 10 years than those without one.</div>
+              </div>
+              <div class="pdf-page" id="pdf1-p3">
+                <div class="pdf-page-title">Your Next Steps</div>
+                <div class="pdf-section"><div class="pdf-section-title">Three things to do this month</div><div class="pdf-body">1. Complete your financial profile — it takes 12 minutes and unlocks personalised recommendations.<br/><br/>2. Review your super contribution strategy with your adviser before 30 June.<br/><br/>3. Book a no-obligation 30-minute meeting to discuss your goals.</div></div>
+                <div class="pdf-highlight">Ready to start? Your adviser is just one message away.</div>
+                <button class="cta" style="margin-top:12px;border-radius:8px" onclick="switchTab(lc,'messages')">Message your adviser</button>
+              </div>
+            </div>
+          </div>
+          <div class="pactions">
+            <div class="pa" id="fl_edu" onclick="tLike('fl_edu','flc_edu')"><i class="ti ti-heart" aria-hidden="true"></i><span id="flc_edu">18</span></div>
+            <div class="pa" onclick="tCmt('fc_edu')"><i class="ti ti-message-circle" aria-hidden="true"></i><span>2 comments</span></div>
+            <div class="pa"><i class="ti ti-share" aria-hidden="true"></i><span>Share</span></div>
+          </div>
+          <div class="pcomments" id="fc_edu"><div class="cmt"><div class="cav">JT</div><div class="cbub"><div class="cname">Jenny T.</div>Page 2 really opened my eyes — didn't realise how diverse the asset base was.</div></div></div>
+        </div>
+        <div class="post">
+          <div class="post-hdr"><div class="pav">RP</div><div class="pmeta"><div class="pauthor">Regional Prosperity</div><div class="ptime">2 hours ago</div></div><div class="ptag">Market update</div></div>
+          <div class="ptitle">Rate rise impact on regional property</div>
+          <div class="pbody">The RBA's latest decision has direct implications for property-holding clients in regional NSW and VIC.</div>
+          <div class="pchart"><svg class="sparksvg" viewBox="0 0 343 52"><defs><linearGradient id="sg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C8933A" stop-opacity="0.18"/><stop offset="100%" stop-color="#C8933A" stop-opacity="0"/></linearGradient></defs><polygon points="0,42 50,38 100,35 150,40 190,28 230,22 270,30 310,18 343,13 343,52 0,52" fill="url(#sg1)"/><polyline points="0,42 50,38 100,35 150,40 190,28 230,22 270,30 310,18 343,13" stroke="#C8933A" stroke-width="2" fill="none"/><text x="8" y="50" font-size="10" fill="#8A9BAA" font-family="Inter,sans-serif">Jan</text><text x="150" y="50" font-size="10" fill="#8A9BAA" font-family="Inter,sans-serif">Apr</text><text x="300" y="50" font-size="10" fill="#8A9BAA" font-family="Inter,sans-serif">Jul</text></svg></div>
+          <div class="pactions">
+            <div class="pa liked" id="fl1" onclick="tLike('fl1','flc1')"><i class="ti ti-heart" aria-hidden="true"></i><span id="flc1">24</span></div>
+            <div class="pa" onclick="tCmt('fc1')"><i class="ti ti-message-circle" aria-hidden="true"></i><span>3 comments</span></div>
+            <div class="pa"><i class="ti ti-share" aria-hidden="true"></i><span>Share</span></div>
+          </div>
+          <div class="pcomments" id="fc1"><div class="cmt"><div class="cav">TW</div><div class="cbub"><div class="cname">Tom W.</div>Really helpful — thanks.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEED CLIENT -->
+    <div class="page" id="ch-feed">
+      <div class="feed-pg-hdr"><div class="feed-pg-title">Updates</div><div class="feed-pg-sub">News and insights from Regional Prosperity</div></div>
+      <div style="padding-bottom:16px">
+        <div class="post">
+          <div class="notice-bar"><i class="ti ti-sparkles" aria-hidden="true"></i><span>Traci posted an update relevant to your annual review</span></div>
+          <div class="post-hdr"><div class="pav sec">TB</div><div class="pmeta"><div class="pauthor">Traci Bartlett</div><div class="ptime">1 hour ago</div></div><div class="ptag">Annual reviews</div></div>
+          <div class="ptitle">Preparing for your annual review — a guide for clients</div>
+          <div class="pbody">Your annual review is an opportunity to make sure your financial plan still reflects your life. Here's how to get the most from it.</div>
+          <div class="pactions">
+            <div class="pa liked" id="cl1" onclick="tLike('cl1','clc1')"><i class="ti ti-heart" aria-hidden="true"></i><span id="clc1">14</span></div>
+            <div class="pa" onclick="tCmt('cc1')"><i class="ti ti-message-circle" aria-hidden="true"></i><span>2 comments</span></div>
+            <div class="pa"><i class="ti ti-share" aria-hidden="true"></i><span>Share</span></div>
+          </div>
+          <div class="pcomments" id="cc1"><div class="cmt"><div class="cav">PK</div><div class="cbub"><div class="cname">Peter K.</div>Always forget the insurance review part — thanks Traci!</div></div></div>
+        </div>
+        <div class="post">
+          <div class="post-hdr"><div class="pav">RP</div><div class="pmeta"><div class="pauthor">Regional Prosperity</div><div class="ptime">2 hours ago</div></div><div class="ptag">Market update</div></div>
+          <div class="ptitle">Rate rise impact on regional property</div>
+          <div class="pbody">The RBA's latest decision has direct implications for property-holding clients across regional NSW and VIC.</div>
+          <div class="pactions">
+            <div class="pa liked" id="cl2" onclick="tLike('cl2','clc2')"><i class="ti ti-heart" aria-hidden="true"></i><span id="clc2">24</span></div>
+            <div class="pa" onclick="tCmt('cc2')"><i class="ti ti-message-circle" aria-hidden="true"></i><span>3 comments</span></div>
+            <div class="pa"><i class="ti ti-share" aria-hidden="true"></i><span>Share</span></div>
+          </div>
+          <div class="pcomments" id="cc2"><div class="cmt"><div class="cav">TW</div><div class="cbub"><div class="cname">Tom W.</div>Helpful — thanks.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIBRARY PROSPECT -->
+    <div class="page" id="ph-library">
+      <div class="lib-pg-hdr"><div class="lib-pg-title">Library</div><div class="lib-pg-sub">Your documents and resources</div></div>
+      <div style="height:12px"></div>
+      <div class="lib-sec">
+        <div class="fdr" onclick="togFdr('pf1','pa1')">
+          <div class="fdr-hdr"><div class="fdr-icon fi-gold"><i class="ti ti-upload" aria-hidden="true"></i></div><div><div class="fdr-label">Documents to upload</div><div class="fdr-count">2 outstanding</div></div><i class="ti ti-chevron-down fdr-arr" id="pa1" aria-hidden="true"></i></div>
+          <div class="fdr-files" id="pf1">
+            <div class="fitem"><i class="ti ti-file-plus" aria-hidden="true"></i><span class="fitem-name">SMSF annual statement 2023–24</span><span class="fitem-tag fitem-new">Upload</span></div>
+            <div class="fitem"><i class="ti ti-check" style="color:#3A7A3A" aria-hidden="true"></i><span class="fitem-name">Tax return 2023–24</span><span class="fitem-tag" style="background:rgba(58,122,58,.1);color:#3A7A3A">Uploaded</span></div>
+          </div>
+        </div>
+        <div class="fdr" onclick="togFdr('pf2','pa2')">
+          <div class="fdr-hdr"><div class="fdr-icon fi-blue"><i class="ti ti-book" aria-hidden="true"></i></div><div><div class="fdr-label">Guides &amp; resources</div><div class="fdr-count">3 items</div></div><i class="ti ti-chevron-down fdr-arr" id="pa2" aria-hidden="true"></i></div>
+          <div class="fdr-files" id="pf2">
+            <div class="fitem"><i class="ti ti-world" aria-hidden="true"></i><span class="fitem-name">Financial Services Guide (FSG)</span><span class="fitem-tag">Link</span></div>
+            <div class="fitem"><i class="ti ti-world" aria-hidden="true"></i><span class="fitem-name">Privacy Policy</span><span class="fitem-tag">Link</span></div>
+            <div class="fitem"><i class="ti ti-file-text" aria-hidden="true"></i><span class="fitem-name">Understanding Your Risk Profile</span><span class="fitem-tag">PDF</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIBRARY CLIENT -->
+    <div class="page" id="ch-library">
+      <div class="lib-pg-hdr"><div class="lib-pg-title">Library</div><div class="lib-pg-sub">Your documents and resources</div></div>
+      <div style="height:12px"></div>
+      <div class="lib-sec">
+        <div class="fdr" onclick="togFdr('cf1','ca1')">
+          <div class="fdr-hdr"><div class="fdr-icon fi-gold"><i class="ti ti-upload" aria-hidden="true"></i></div><div><div class="fdr-label">Upload for your review</div><div class="fdr-count">1 outstanding</div></div><i class="ti ti-chevron-down fdr-arr" id="ca1" aria-hidden="true"></i></div>
+          <div class="fdr-files" id="cf1">
+            <div class="fitem"><i class="ti ti-file-plus" aria-hidden="true"></i><span class="fitem-name">Latest payslips (3 months)</span><span class="fitem-tag fitem-new">Upload</span></div>
+            <div class="fitem"><i class="ti ti-check" style="color:#3A7A3A" aria-hidden="true"></i><span class="fitem-name">Tax return 2023–24</span><span class="fitem-tag" style="background:rgba(58,122,58,.1);color:#3A7A3A">Uploaded</span></div>
+          </div>
+        </div>
+        <div class="fdr" onclick="togFdr('cf2','ca2')">
+          <div class="fdr-hdr"><div class="fdr-icon fi-gold"><i class="ti ti-file-text" aria-hidden="true"></i></div><div><div class="fdr-label">Statements</div><div class="fdr-count">4 documents</div></div><i class="ti ti-chevron-down fdr-arr" id="ca2" aria-hidden="true"></i></div>
+          <div class="fdr-files" id="cf2">
+            <div class="fitem"><i class="ti ti-file-text" aria-hidden="true"></i><span class="fitem-name">Portfolio Statement — June 2025</span><span class="fitem-tag">PDF</span></div>
+            <div class="fitem"><i class="ti ti-file-text" aria-hidden="true"></i><span class="fitem-name">Portfolio Statement — March 2025</span><span class="fitem-tag">PDF</span></div>
+            <div class="fitem"><i class="ti ti-file-text" aria-hidden="true"></i><span class="fitem-name">Tax Summary 2024–25</span><span class="fitem-tag">PDF</span></div>
+            <div class="fitem"><i class="ti ti-file-text" aria-hidden="true"></i><span class="fitem-name">SMSF Annual Report</span><span class="fitem-tag">PDF</span></div>
+          </div>
+        </div>
+        <div class="fdr" onclick="togFdr('cf3','ca3')">
+          <div class="fdr-hdr"><div class="fdr-icon fi-green"><i class="ti ti-shield-check" aria-hidden="true"></i></div><div><div class="fdr-label">Insurance</div><div class="fdr-count">2 documents</div></div><i class="ti ti-chevron-down fdr-arr" id="ca3" aria-hidden="true"></i></div>
+          <div class="fdr-files" id="cf3">
+            <div class="fitem"><i class="ti ti-file-text" aria-hidden="true"></i><span class="fitem-name">Life &amp; TPD Policy Schedule</span><span class="fitem-tag">PDF</span></div>
+            <div class="fitem"><i class="ti ti-file-text" aria-hidden="true"></i><span class="fitem-name">Income Protection Certificate</span><span class="fitem-tag">PDF</span></div>
+          </div>
+        </div>
+        <div class="fdr" onclick="togFdr('cf4','ca4')">
+          <div class="fdr-hdr"><div class="fdr-icon fi-blue"><i class="ti ti-book" aria-hidden="true"></i></div><div><div class="fdr-label">Guides &amp; resources</div><div class="fdr-count">3 items</div></div><i class="ti ti-chevron-down fdr-arr" id="ca4" aria-hidden="true"></i></div>
+          <div class="fdr-files" id="cf4">
+            <div class="fitem"><i class="ti ti-world" aria-hidden="true"></i><span class="fitem-name">Financial Services Guide (FSG)</span><span class="fitem-tag">Link</span></div>
+            <div class="fitem"><i class="ti ti-world" aria-hidden="true"></i><span class="fitem-name">Privacy Policy</span><span class="fitem-tag">Link</span></div>
+            <div class="fitem"><i class="ti ti-file-text" aria-hidden="true"></i><span class="fitem-name">Understanding Your Risk Profile</span><span class="fitem-tag">PDF</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILE PROSPECT -->
+    <div class="page" id="ph-profile">
+      <div class="prof-hero">
+        <div class="prof-av-wrap"><div class="prof-av-fallback">SK</div></div>
+        <div class="prof-name">Sarah Kowalski</div>
+        <div class="prof-stage-badge">Prospect</div>
+      </div>
+      <div style="height:10px"></div>
+      <div class="prof-sec">
+        <div class="prof-row"><span class="prl"><i class="ti ti-mail" aria-hidden="true"></i>Email</span><span class="prv">s.kowalski@gmail.com</span></div>
+        <div class="prof-row"><span class="prl"><i class="ti ti-phone" aria-hidden="true"></i>Mobile</span><span class="prv">0412 XXX XXX</span></div>
+        <div class="prof-row"><span class="prl"><i class="ti ti-map-pin" aria-hidden="true"></i>Location</span><span class="prv">Colac, VIC</span></div>
+      </div>
+      <div class="prof-sec">
+        <div class="prof-row"><span class="prl"><i class="ti ti-user" aria-hidden="true"></i>Adviser</span><span class="prv">Kane Leersen</span></div>
+        <div class="prof-row"><span class="prl"><i class="ti ti-clipboard-list" aria-hidden="true"></i>Onboarding</span><span class="prv acc">65% — continue →</span></div>
+      </div>
+      <div class="prof-sec">
+        <div class="prof-row"><span class="prl"><i class="ti ti-lock" aria-hidden="true"></i>Security</span><span class="prv">SMS code</span></div>
+        <div class="prof-row"><span class="prl"><i class="ti ti-bell" aria-hidden="true"></i>Notifications</span><span class="prv">On</span></div>
+      </div>
+      <button class="logout-btn"><i class="ti ti-logout" style="font-size:15px" aria-hidden="true"></i>Sign out</button>
+      <div class="referral-card">
+        <div class="referral-title">Refer a friend</div>
+        <div class="referral-sub">Know someone who could benefit from Regional Prosperity? Share your personal link.</div>
+        <div class="referral-body">
+          <div class="qr-wrap">
+            <svg width="72" height="72" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+              <rect width="72" height="72" fill="white"/>
+              <rect x="4" y="4" width="20" height="20" fill="#1A2332" rx="2"/><rect x="7" y="7" width="14" height="14" fill="white" rx="1"/><rect x="10" y="10" width="8" height="8" fill="#1A2332" rx="1"/>
+              <rect x="48" y="4" width="20" height="20" fill="#1A2332" rx="2"/><rect x="51" y="7" width="14" height="14" fill="white" rx="1"/><rect x="54" y="10" width="8" height="8" fill="#1A2332" rx="1"/>
+              <rect x="4" y="48" width="20" height="20" fill="#1A2332" rx="2"/><rect x="7" y="51" width="14" height="14" fill="white" rx="1"/><rect x="10" y="54" width="8" height="8" fill="#1A2332" rx="1"/>
+              <rect x="28" y="4" width="4" height="4" fill="#1A2332" rx=".5"/><rect x="34" y="4" width="4" height="4" fill="#00BF7D" rx=".5"/><rect x="40" y="4" width="4" height="4" fill="#1A2332" rx=".5"/>
+              <rect x="28" y="10" width="4" height="4" fill="#00BF7D" rx=".5"/><rect x="40" y="10" width="4" height="4" fill="#1A2332" rx=".5"/><rect x="34" y="16" width="4" height="4" fill="#1A2332" rx=".5"/>
+              <rect x="4" y="28" width="4" height="4" fill="#1A2332" rx=".5"/><rect x="10" y="28" width="4" height="4" fill="#00BF7D" rx=".5"/><rect x="16" y="28" width="4" height="4" fill="#1A2332" rx=".5"/>
+              <rect x="4" y="34" width="4" height="4" fill="#00BF7D" rx=".5"/><rect x="10" y="40" width="4" height="4" fill="#1A2332" rx=".5"/>
+              <rect x="28" y="28" width="4" height="4" fill="#1A2332" rx=".5"/><rect x="34" y="28" width="4" height="4" fill="#00BF7D" rx=".5"/><rect x="40" y="28" width="4" height="4" fill="#1A2332" rx=".5"/>
+              <rect x="46" y="28" width="4" height="4" fill="#00BF7D" rx=".5"/><rect x="52" y="28" width="4" height="4" fill="#1A2332" rx=".5"/>
+              <rect x="28" y="34" width="4" height="4" fill="#00BF7D" rx=".5"/><rect x="40" y="34" width="4" height="4" fill="#1A2332" rx=".5"/>
+              <rect x="28" y="40" width="4" height="4" fill="#1A2332" rx=".5"/><rect x="34" y="40" width="4" height="4" fill="#00BF7D" rx=".5"/>
+              <rect x="46" y="40" width="4" height="4" fill="#1A2332" rx=".5"/><rect x="52" y="40" width="4" height="4" fill="#00BF7D" rx=".5"/>
+              <rect x="58" y="28" width="4" height="4" fill="#1A2332" rx=".5"/><rect x="64" y="28" width="4" height="4" fill="#00BF7D" rx=".5"/>
+              <rect x="28" y="52" width="4" height="4" fill="#00BF7D" rx=".5"/><rect x="40" y="52" width="4" height="4" fill="#1A2332" rx=".5"/>
+              <rect x="52" y="52" width="4" height="4" fill="#00BF7D" rx=".5"/><rect x="64" y="52" width="4" height="4" fill="#1A2332" rx=".5"/>
+              <rect x="34" y="58" width="4" height="4" fill="#1A2332" rx=".5"/><rect x="46" y="58" width="4" height="4" fill="#00BF7D" rx=".5"/>
+              <rect x="58" y="58" width="4" height="4" fill="#1A2332" rx=".5"/>
+            </svg>
+          </div>
+          <div class="qr-info">
+            <div class="qr-link">regionalprosperity.au/refer/sarah-k</div>
+            <button class="referral-share-btn"><i class="ti ti-share" aria-hidden="true"></i>Share link</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILE CLIENT -->
+    <div class="page" id="ch-profile">
+      <div class="prof-hero">
+        <div class="prof-av-wrap">
+          <img class="prof-av" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&auto=format&fit=crop&q=80&crop=faces" alt="Sarah" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div class="prof-av-fallback" style="display:none">SK</div>
+        </div>
+        <div class="prof-name">Sarah Kowalski</div>
+        <div class="prof-stage-badge">Active Client</div>
+      </div>
+      <div style="height:10px"></div>
+      <div class="prof-sec">
+        <div class="prof-row"><span class="prl"><i class="ti ti-mail" aria-hidden="true"></i>Email</span><span class="prv">s.kowalski@gmail.com</span></div>
+        <div class="prof-row"><span class="prl"><i class="ti ti-phone" aria-hidden="true"></i>Mobile</span><span class="prv">0412 XXX XXX</span></div>
+        <div class="prof-row"><span class="prl"><i class="ti ti-map-pin" aria-hidden="true"></i>Location</span><span class="prv">Colac, VIC</span></div>
+      </div>
+      <div class="prof-sec">
+        <div class="prof-row"><span class="prl"><i class="ti ti-user" aria-hidden="true"></i>Adviser</span><span class="prv">Traci Bartlett</span></div>
+        <div class="prof-row"><span class="prl"><i class="ti ti-calendar" aria-hidden="true"></i>Client since</span><span class="prv">March 2024</span></div>
+        <div class="prof-row"><span class="prl"><i class="ti ti-chart-bar" aria-hidden="true"></i>Portfolio</span><span class="prv">$847,000</span></div>
+        <div class="prof-row"><span class="prl"><i class="ti ti-calendar-event" aria-hidden="true"></i>Next review</span><span class="prv acc">14 Jul 2025</span></div>
+      </div>
+      <div class="prof-sec">
+        <div class="prof-row"><span class="prl"><i class="ti ti-fingerprint" aria-hidden="true"></i>Security</span><span class="prv">Face ID</span></div>
+        <div class="prof-row"><span class="prl"><i class="ti ti-bell" aria-hidden="true"></i>Notifications</span><span class="prv">On</span></div>
+      </div>
+      <button class="logout-btn"><i class="ti ti-logout" style="font-size:15px" aria-hidden="true"></i>Sign out</button>
+      <div class="referral-card">
+        <div class="referral-title">Refer a friend</div>
+        <div class="referral-sub">Know someone in regional Victoria who could benefit from a conversation with Regional Prosperity?</div>
+        <div class="referral-body">
+          <div class="qr-wrap">
+            <svg width="72" height="72" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+              <rect width="72" height="72" fill="white"/>
+              <rect x="4" y="4" width="20" height="20" fill="#1A2332" rx="2"/><rect x="7" y="7" width="14" height="14" fill="white" rx="1"/><rect x="10" y="10" width="8" height="8" fill="#1A2332" rx="1"/>
+              <rect x="48" y="4" width="20" height="20" fill="#1A2332" rx="2"/><rect x="51" y="7" width="14" height="14" fill="white" rx="1"/><rect x="54" y="10" width="8" height="8" fill="#1A2332" rx="1"/>
+              <rect x="4" y="48" width="20" height="20" fill="#1A2332" rx="2"/><rect x="7" y="51" width="14" height="14" fill="white" rx="1"/><rect x="10" y="54" width="8" height="8" fill="#1A2332" rx="1"/>
+              <rect x="28" y="4" width="4" height="4" fill="#C8933A" rx=".5"/><rect x="34" y="4" width="4" height="4" fill="#1A2332" rx=".5"/><rect x="40" y="4" width="4" height="4" fill="#00BF7D" rx=".5"/>
+              <rect x="28" y="10" width="4" height="4" fill="#1A2332" rx=".5"/><rect x="40" y="10" width="4" height="4" fill="#C8933A" rx=".5"/><rect x="34" y="16" width="4" height="4" fill="#00BF7D" rx=".5"/>
+              <rect x="4" y="28" width="4" height="4" fill="#00BF7D" rx=".5"/><rect x="10" y="28" width="4" height="4" fill="#1A2332" rx=".5"/><rect x="16" y="28" width="4" height="4" fill="#C8933A" rx=".5"/>
+              <rect x="4" y="34" width="4" height="4" fill="#1A2332" rx=".5"/><rect x="10" y="40" width="4" height="4" fill="#00BF7D" rx=".5"/>
+              <rect x="28" y="28" width="4" height="4" fill="#C8933A" rx=".5"/><rect x="34" y="28" width="4" height="4" fill="#1A2332" rx=".5"/><rect x="40" y="28" width="4" height="4" fill="#00BF7D" rx=".5"/>
+              <rect x="46" y="28" width="4" height="4" fill="#1A2332" rx=".5"/><rect x="52" y="28" width="4" height="4" fill="#C8933A" rx=".5"/>
+              <rect x="28" y="34" width="4" height="4" fill="#1A2332" rx=".5"/><rect x="40" y="34" width="4" height="4" fill="#00BF7D" rx=".5"/>
+              <rect x="28" y="40" width="4" height="4" fill="#C8933A" rx=".5"/><rect x="34" y="40" width="4" height="4" fill="#1A2332" rx=".5"/>
+              <rect x="46" y="40" width="4" height="4" fill="#00BF7D" rx=".5"/><rect x="52" y="40" width="4" height="4" fill="#1A2332" rx=".5"/>
+              <rect x="58" y="28" width="4" height="4" fill="#C8933A" rx=".5"/><rect x="64" y="28" width="4" height="4" fill="#1A2332" rx=".5"/>
+              <rect x="28" y="52" width="4" height="4" fill="#1A2332" rx=".5"/><rect x="40" y="52" width="4" height="4" fill="#C8933A" rx=".5"/>
+              <rect x="52" y="52" width="4" height="4" fill="#1A2332" rx=".5"/><rect x="64" y="52" width="4" height="4" fill="#00BF7D" rx=".5"/>
+              <rect x="34" y="58" width="4" height="4" fill="#00BF7D" rx=".5"/><rect x="46" y="58" width="4" height="4" fill="#1A2332" rx=".5"/>
+              <rect x="58" y="58" width="4" height="4" fill="#C8933A" rx=".5"/>
+            </svg>
+          </div>
+          <div class="qr-info">
+            <div class="qr-link">regionalprosperity.au/refer/sarah-k</div>
+            <button class="referral-share-btn"><i class="ti ti-share" aria-hidden="true"></i>Share link</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="tab-bar">
+    <div class="tab active" id="tab-home" onclick="switchTab(lc,'home')"><i class="ti ti-home" aria-hidden="true"></i><span>Home</span></div>
+    <div class="tab" id="tab-messages" onclick="switchTab(lc,'messages')"><div class="tbw"><i class="ti ti-message-circle" aria-hidden="true"></i><span class="bdg">2</span></div><span>Messages</span></div>
+    <div class="tab" id="tab-feed" onclick="switchTab(lc,'feed')"><i class="ti ti-layout-grid" aria-hidden="true"></i><span>Feed</span></div>
+    <div class="tab" id="tab-library" onclick="switchTab(lc,'library')"><i class="ti ti-folder" aria-hidden="true"></i><span>Library</span></div>
+    <div class="tab" id="tab-profile" onclick="switchTab(lc,'profile')"><i class="ti ti-user-circle" aria-hidden="true"></i><span>Profile</span></div>
+  </div>
+</div>
+</div>
+
+<script>
+var lc='ph',curTab='home';
+var themes=['','th-fw','th-dc','th-sg'];
+function setLifecycle(sel){lc=sel.value==='prospect'?'ph':'ch';sel.className='lc-select '+sel.value;switchTab(lc,curTab);document.querySelectorAll('.thread-view').forEach(t=>t.classList.remove('open'));document.querySelectorAll('[id$="-msg-list"]').forEach(m=>m.style.display='block');}
+function switchTab(prefix,tab){curTab=tab;document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));var pg=document.getElementById(prefix+'-'+tab)||document.getElementById('ph-'+tab);if(pg)pg.classList.add('active');var tb=document.getElementById('tab-'+tab);if(tb)tb.classList.add('active');document.getElementById('screen').scrollTop=0;}
+function setTheme(idx,btn){document.getElementById('phone').className='phone '+(themes[idx]||'');document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+function openThread(prefix){var l=document.getElementById(prefix+'-msg-list'),t=document.getElementById(prefix+'-thread');if(l)l.style.display='none';if(t)t.classList.add('open');}
+function closeThread(prefix){var l=document.getElementById(prefix+'-msg-list'),t=document.getElementById(prefix+'-thread');if(l)l.style.display='block';if(t)t.classList.remove('open');}
+function sendMsg(prefix){var input=document.getElementById(prefix+'-input'),text=input.value.trim();if(!text)return;var msgs=document.getElementById(prefix+'-thread-msgs');var w=document.createElement('div');w.className='bw mine';w.innerHTML='<div class="bubble mine">'+text+'</div><div class="btime">Just now</div>';msgs.appendChild(w);input.value='';msgs.scrollTop=msgs.scrollHeight;setTimeout(function(){var r=document.createElement('div');r.className='bw theirs';r.innerHTML='<div class="bubble theirs">Thanks Sarah, I\'ll get back to you shortly.</div><div class="btime">Just now</div>';msgs.appendChild(r);msgs.scrollTop=msgs.scrollHeight;},1100);}
+function tLike(id,cid){var el=document.getElementById(id),cnt=document.getElementById(cid),n=parseInt(cnt.textContent);el.classList.contains('liked')?(el.classList.remove('liked'),cnt.textContent=n-1):(el.classList.add('liked'),cnt.textContent=n+1);}
+function tCmt(id){document.getElementById(id).classList.toggle('open');}
+function togFdr(fid,aid){var f=document.getElementById(fid),a=document.getElementById(aid),o=f.classList.contains('open');f.classList.toggle('open');a.style.transform=o?'rotate(0deg)':'rotate(180deg)';a.style.transition='transform .18s';}
+var pdfPages={pdf1:1};
+function pdfNav(id,dir){var cur=pdfPages[id],next=cur+dir;if(next<1||next>3)return;document.getElementById(id+'-p'+cur).classList.remove('active');document.getElementById(id+'-p'+next).classList.add('active');pdfPages[id]=next;document.getElementById(id+'-num').textContent=next+' / 3';document.getElementById(id+'-prev').disabled=next===1;document.getElementById(id+'-next').disabled=next===3;}
+function playVideo(id){var overlay=document.querySelector('#'+id+' .post-video-overlay'),player=document.getElementById(id+'-player'),vid=document.getElementById(id+'-vid');if(overlay)overlay.style.display='none';player.classList.add('playing');if(vid){vid.load();vid.play();}}
+document.getElementById('ph-input').addEventListener('keydown',function(e){if(e.key==='Enter')sendMsg('ph');});
+document.getElementById('ch-input').addEventListener('keydown',function(e){if(e.key==='Enter')sendMsg('ch');});
+(function(){
+  var themeMap={navy:0,forest:1,dusk:2,sky:3};
+  var s=window.__rpStage||'ph';
+  var t=window.__rpTheme||'navy';
+  lc=s;
+  if(s==='ch'){var sel=document.getElementById('lcsel');sel.value='client';sel.className='lc-select client';}
+  var tIdx=themeMap[t]!==undefined?themeMap[t]:0;
+  document.getElementById('phone').className='phone '+(themes[tIdx]||'');
+  document.querySelectorAll('.theme-btn').forEach(function(b,i){b.classList.toggle('active',i===tIdx);});
+  switchTab(lc,'home');
+  var ls=document.getElementById('__rp_loading');if(ls)ls.parentNode.removeChild(ls);
+})();
+</script>
+
+</body>
+</html>

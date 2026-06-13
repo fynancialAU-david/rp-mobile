@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Regional Prosperity — Demo Launcher</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;min-height:100vh;transition:background .4s ease,color .4s ease;}
+
+/* Theme variables */
+.th-navy{--bg:#1A2332;--bg2:#0F1620;--accent:#C8933A;--accent2:#00BF7D;--text:rgba(255,255,255,.9);--text2:rgba(255,255,255,.55);--card:rgba(255,255,255,.06);--card-border:rgba(255,255,255,.1);--btn-text:#1A2332;}
+.th-forest{--bg:#2A3D2A;--bg2:#1A2A1A;--accent:#D4A843;--accent2:#00BF7D;--text:rgba(255,255,255,.9);--text2:rgba(255,255,255,.55);--card:rgba(255,255,255,.06);--card-border:rgba(255,255,255,.1);--btn-text:#2A3D2A;}
+.th-dusk{--bg:#3D2820;--bg2:#271810;--accent:#C46A3A;--accent2:#00BF7D;--text:rgba(255,255,255,.9);--text2:rgba(255,255,255,.55);--card:rgba(255,255,255,.06);--card-border:rgba(255,255,255,.1);--btn-text:#3D2820;}
+.th-sky{--bg:#1E3A5F;--bg2:#102440;--accent:#C8933A;--accent2:#00BF7D;--text:rgba(255,255,255,.9);--text2:rgba(255,255,255,.55);--card:rgba(255,255,255,.06);--card-border:rgba(255,255,255,.1);--btn-text:#1E3A5F;}
+
+body{background:var(--bg);color:var(--text);}
+
+.bg-grad{position:fixed;inset:0;pointer-events:none;z-index:0;}
+.bg-grad::before{content:'';position:absolute;top:-20%;right:-10%;width:60%;height:60%;border-radius:50%;background:radial-gradient(circle,rgba(200,147,58,.12) 0%,transparent 70%);}
+.bg-grad::after{content:'';position:absolute;bottom:-10%;left:-10%;width:50%;height:50%;border-radius:50%;background:radial-gradient(circle,rgba(0,191,125,.07) 0%,transparent 70%);}
+
+.page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;}
+
+.logo-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.rp-icon-lg svg path{fill:#00BF7D;}
+.firm-name{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:var(--text);letter-spacing:.01em;}
+
+.tagline{font-size:13px;color:var(--text2);margin-bottom:48px;text-align:center;letter-spacing:.02em;}
+
+.demo-label{font-size:10px;text-transform:uppercase;letter-spacing:.14em;font-weight:600;color:var(--text2);margin-bottom:14px;text-align:center;}
+
+/* Stage selector */
+.stage-row{display:flex;gap:10px;margin-bottom:32px;}
+.stage-btn{flex:1;padding:14px 20px;border-radius:14px;border:1.5px solid var(--card-border);background:var(--card);cursor:pointer;text-align:left;transition:all .2s;backdrop-filter:blur(10px);}
+.stage-btn:hover{border-color:var(--accent);background:rgba(255,255,255,.1);}
+.stage-btn.active{border-color:var(--accent);background:rgba(200,147,58,.12);}
+.stage-btn-icon{font-size:20px;margin-bottom:6px;}
+.stage-btn-title{font-size:14px;font-weight:600;color:var(--text);font-family:'Inter',sans-serif;}
+.stage-btn-sub{font-size:11px;color:var(--text2);margin-top:2px;line-height:1.4;}
+
+/* Theme selector */
+.theme-row{display:flex;gap:8px;margin-bottom:40px;flex-wrap:wrap;justify-content:center;}
+.th-btn{display:flex;align-items:center;gap:7px;padding:8px 14px;border-radius:20px;border:1.5px solid transparent;cursor:pointer;font-size:12px;font-weight:600;font-family:'Inter',sans-serif;transition:all .2s;}
+.th-btn.active{border-color:white;outline:2px solid rgba(255,255,255,.3);outline-offset:1px;}
+.th-btn-swatch{width:14px;height:14px;border-radius:50%;flex-shrink:0;}
+.tb-navy{background:#1A2332;color:#C8933A;} .tb-navy .th-btn-swatch{background:#C8933A;}
+.tb-forest{background:#2A3D2A;color:#D4A843;} .tb-forest .th-btn-swatch{background:#D4A843;}
+.tb-dusk{background:#3D2820;color:#C46A3A;} .tb-dusk .th-btn-swatch{background:#C46A3A;}
+.tb-sky{background:#1E3A5F;color:#C8933A;} .tb-sky .th-btn-swatch{background:#C8933A;}
+
+/* Launch button */
+.launch-btn{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--accent);color:var(--btn-text);border:none;border-radius:16px;padding:16px 40px;font-size:16px;font-weight:700;font-family:'Inter',sans-serif;cursor:pointer;transition:all .2s;box-shadow:0 8px 32px rgba(0,0,0,.3);letter-spacing:.01em;width:100%;max-width:340px;}
+.launch-btn:hover{transform:translateY(-1px);box-shadow:0 12px 40px rgba(0,0,0,.4);}
+.launch-btn:active{transform:translateY(0);}
+.launch-btn i{font-size:20px;}
+
+.fs-hint{margin-top:14px;font-size:11px;color:var(--text2);text-align:center;line-height:1.5;}
+.fs-hint span{color:var(--accent);font-weight:600;}
+
+.divider-line{width:40px;height:1px;background:var(--card-border);margin:40px auto;}
+
+.share-row{display:flex;gap:10px;align-items:center;justify-content:center;}
+.share-label{font-size:11px;color:var(--text2);}
+.share-link{font-size:11px;color:var(--accent);font-weight:600;text-decoration:none;background:var(--card);border:1px solid var(--card-border);border-radius:8px;padding:5px 10px;}
+
+.footer{margin-top:48px;font-size:11px;color:var(--text2);text-align:center;line-height:1.8;}
+.footer strong{color:var(--text);font-weight:500;}
+</style>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"/>
+</head>
+<body class="th-navy">
+
+<div class="bg-grad"></div>
+
+<div class="page">
+  <div class="logo-row">
+    <span class="rp-icon-lg">
+      <svg width="36" height="36" viewBox="0 0 35.51 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0.461384V35.9654H13.6739V33.4098C13.6533 29.3317 10.3307 26.0205 6.24799 26.0205V22.7829C9.13433 22.7829 11.7497 23.9402 13.6716 25.807V9.54521C13.7451 6.01592 16.5442 3.13647 20.0804 3.13647C23.6166 3.13647 26.4891 6.01133 26.4891 9.54521C26.4891 13.0791 23.6143 15.9539 20.0804 15.9539C20.0689 15.9539 20.0574 15.9539 20.0482 15.9539V12.7163C20.0482 12.7163 20.0712 12.7163 20.0804 12.7163C21.8301 12.7163 23.2537 11.2926 23.2537 9.54291C23.2537 7.79319 21.8301 6.36954 20.0804 6.36954C19.217 6.36954 18.434 6.71626 17.8622 7.27884H17.8645C17.2721 7.86667 16.9667 8.65427 16.9208 9.67608V9.70135C16.9208 9.72201 16.9208 9.73349 16.9208 9.74038V9.75415L16.9162 15.1112C16.9139 15.1112 16.9116 15.1089V22.7645C19.7658 19.0538 24.2457 16.6566 29.2767 16.6566V19.8942C22.4616 19.8942 16.9162 25.4396 16.9162 32.2547V35.9034H16.9139V35.9608H35.5063V0.456787H0.00229846L0 0.461384ZM8.52354 16.6084C7.25603 16.6084 6.22733 15.5797 6.22733 14.3121C6.22733 13.0446 7.25603 12.0159 8.52354 12.0159C9.79105 12.0159 10.8198 13.0446 10.8198 14.3121C10.8198 15.5797 9.79105 16.6084 8.52354 16.6084Z" fill="#00BF7D"/>
+      </svg>
+    </span>
+    <span class="firm-name">Regional Prosperity</span>
+  </div>
+
+  <div class="tagline">Client Experience Demo — Powered by Fynancial</div>
+
+  <div class="demo-label">Choose a client scenario</div>
+
+  <div class="stage-row">
+    <button class="stage-btn active" id="btn-prospect" onclick="setStage('prospect')">
+      <div class="stage-btn-icon">🌱</div>
+      <div class="stage-btn-title">Prospect</div>
+      <div class="stage-btn-sub">Sarah is new — onboarding in progress, adviser assigned</div>
+    </button>
+    <button class="stage-btn" id="btn-client" onclick="setStage('client')">
+      <div class="stage-btn-icon">⭐</div>
+      <div class="stage-btn-title">Active Client</div>
+      <div class="stage-btn-sub">Sarah is established — annual review coming up in 18 days</div>
+    </button>
+  </div>
+
+  <div class="demo-label">Choose a brand theme</div>
+
+  <div class="theme-row">
+    <button class="th-btn tb-navy active" id="th-navy" onclick="setTheme('navy',this)"><span class="th-btn-swatch"></span>Navy & Gold</button>
+    <button class="th-btn tb-forest" id="th-forest" onclick="setTheme('forest',this)"><span class="th-btn-swatch"></span>Forest</button>
+    <button class="th-btn tb-dusk" id="th-dusk" onclick="setTheme('dusk',this)"><span class="th-btn-swatch"></span>Dusk</button>
+    <button class="th-btn tb-sky" id="th-sky" onclick="setTheme('sky',this)"><span class="th-btn-swatch"></span>Sky & Gold</button>
+  </div>
+
+  <button class="launch-btn" onclick="launch()">
+    <i class="ti ti-device-mobile" aria-hidden="true"></i>
+    Launch demo
+  </button>
+
+  <div class="fs-hint" id="fs-hint">
+    Opens in <span>full screen</span> for the most realistic experience.<br/>
+    On iPhone: tap <span>Share → Add to Home Screen</span> first.
+  </div>
+
+  <div class="divider-line"></div>
+
+  <div class="share-row">
+    <span class="share-label">Share this demo</span>
+    <a class="share-link" id="share-url" href="#">regionalprosperity.fynancial.demo</a>
+  </div>
+
+  <div class="footer">
+    <strong>Regional Prosperity</strong> · Client Experience Preview<br/>
+    Built with Fynancial · Confidential — not for distribution
+  </div>
+</div>
+
+<script>
+var stage = 'prospect';
+var theme = 'navy';
+var themeClasses = {navy:'th-navy',forest:'th-forest',dusk:'th-dusk',sky:'th-sky'};
+
+function setStage(s) {
+  stage = s;
+  document.getElementById('btn-prospect').classList.toggle('active', s === 'prospect');
+  document.getElementById('btn-client').classList.toggle('active', s === 'client');
+  updateShareUrl();
+}
+
+function setTheme(t, btn) {
+  theme = t;
+  document.querySelectorAll('.th-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.body.className = '';
+  document.body.classList.add('th-' + t);
+  updateShareUrl();
+}
+
+function updateShareUrl() {
+  var base = window.location.href.replace('landing.html','').replace(/\?.*$/,'');
+  var url = base + 'app.html?stage=' + stage + '&theme=' + theme;
+  var el = document.getElementById('share-url');
+  el.href = url;
+  el.textContent = 'app.html?stage=' + stage + '&theme=' + theme;
+}
+
+function launch() {
+  var base = window.location.href.replace('landing.html','').replace(/\?.*$/,'');
+  var url = base + 'app.html?stage=' + stage + '&theme=' + theme;
+  var win = window.open(url, '_blank');
+  if (win) {
+    setTimeout(function() {
+      try {
+        if (win.document && win.document.documentElement && win.document.documentElement.requestFullscreen) {
+          win.document.documentElement.requestFullscreen();
+        }
+      } catch(e) {}
+    }, 800);
+  }
+}
+
+// Read URL params to pre-select if shared
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var s = params.get('stage');
+  var t = params.get('theme');
+  if (s === 'client') setStage('client');
+  if (t && themeClasses[t]) {
+    theme = t;
+    document.querySelectorAll('.th-btn').forEach(b => b.classList.remove('active'));
+    var btn = document.getElementById('th-' + t);
+    if (btn) btn.classList.add('active');
+    document.body.className = 'th-' + t;
+  }
+  updateShareUrl();
+})();
+
+// Detect mobile and update hint
+if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+  document.getElementById('fs-hint').innerHTML = 'For the best experience on iPhone: tap <span>Share → Add to Home Screen</span>, then open the app from your home screen.';
+} else if (/Android/.test(navigator.userAgent)) {
+  document.getElementById('fs-hint').innerHTML = 'For the best experience: tap <span>Add to Home Screen</span> in your browser menu.';
+} else {
+  document.getElementById('fs-hint').innerHTML = 'Tap Launch to open in <span>full screen</span> — press Esc to exit.';
+}
+</script>
+
+</body>
+</html>
