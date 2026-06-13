@@ -11,29 +11,26 @@
   <title>Regional Prosperity — Launcher</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Lora:wght@400;500;600&family=Merriweather:wght@400;700&family=Inter:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&family=Nunito:wght@400;500;600&family=Outfit:wght@300;400;500;600&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Inter',sans-serif;min-height:100vh;transition:background .4s ease,color .4s ease;}
 
-/* Theme variables */
+/* ── Theme variables ── */
 .th-navy{--bg:#1A2332;--bg2:#0F1620;--accent:#C8933A;--accent2:#00BF7D;--text:rgba(255,255,255,.9);--text2:rgba(255,255,255,.55);--card:rgba(255,255,255,.06);--card-border:rgba(255,255,255,.1);--btn-text:#1A2332;}
 .th-forest{--bg:#2A3D2A;--bg2:#1A2A1A;--accent:#D4A843;--accent2:#00BF7D;--text:rgba(255,255,255,.9);--text2:rgba(255,255,255,.55);--card:rgba(255,255,255,.06);--card-border:rgba(255,255,255,.1);--btn-text:#2A3D2A;}
 .th-dusk{--bg:#3D2820;--bg2:#271810;--accent:#C46A3A;--accent2:#00BF7D;--text:rgba(255,255,255,.9);--text2:rgba(255,255,255,.55);--card:rgba(255,255,255,.06);--card-border:rgba(255,255,255,.1);--btn-text:#3D2820;}
 .th-sky{--bg:#1E3A5F;--bg2:#102440;--accent:#C8933A;--accent2:#00BF7D;--text:rgba(255,255,255,.9);--text2:rgba(255,255,255,.55);--card:rgba(255,255,255,.06);--card-border:rgba(255,255,255,.1);--btn-text:#1E3A5F;}
-
 body{background:var(--bg);color:var(--text);}
 
 .bg-grad{position:fixed;inset:0;pointer-events:none;z-index:0;}
 .bg-grad::before{content:'';position:absolute;top:-20%;right:-10%;width:60%;height:60%;border-radius:50%;background:radial-gradient(circle,rgba(200,147,58,.12) 0%,transparent 70%);}
 .bg-grad::after{content:'';position:absolute;bottom:-10%;left:-10%;width:50%;height:50%;border-radius:50%;background:radial-gradient(circle,rgba(0,191,125,.07) 0%,transparent 70%);}
 
+/* ── Landing page ── */
 .page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;}
-
 .logo-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
 .firm-name{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:var(--text);letter-spacing:.01em;}
-
 .tagline{font-size:13px;color:var(--text2);margin-bottom:48px;text-align:center;letter-spacing:.02em;}
-
 .demo-label{font-size:10px;text-transform:uppercase;letter-spacing:.14em;font-weight:600;color:var(--text2);margin-bottom:14px;text-align:center;}
 
 /* Stage selector */
@@ -46,7 +43,7 @@ body{background:var(--bg);color:var(--text);}
 .stage-btn-sub{font-size:11px;color:var(--text2);margin-top:2px;line-height:1.4;}
 
 /* Theme selector */
-.theme-row{display:flex;gap:8px;margin-bottom:40px;flex-wrap:wrap;justify-content:center;}
+.theme-row{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;justify-content:center;}
 .th-btn{display:flex;align-items:center;gap:7px;padding:8px 14px;border-radius:20px;border:1.5px solid transparent;cursor:pointer;font-size:12px;font-weight:600;font-family:'Inter',sans-serif;transition:all .2s;}
 .th-btn.active{border-color:white;outline:2px solid rgba(255,255,255,.3);outline-offset:1px;}
 .th-btn-swatch{width:14px;height:14px;border-radius:50%;flex-shrink:0;}
@@ -55,23 +52,96 @@ body{background:var(--bg);color:var(--text);}
 .tb-dusk{background:#3D2820;color:#C46A3A;} .tb-dusk .th-btn-swatch{background:#C46A3A;}
 .tb-sky{background:#1E3A5F;color:#C8933A;} .tb-sky .th-btn-swatch{background:#C8933A;}
 
+/* Custom chip */
+.custom-chip{display:none;align-items:center;gap:7px;padding:8px 14px;border-radius:20px;border:1.5px solid white;outline:2px solid rgba(255,255,255,.3);outline-offset:1px;font-size:12px;font-weight:600;font-family:'Inter',sans-serif;color:var(--text);margin-bottom:16px;}
+.custom-chip.visible{display:flex;}
+.custom-swatch{width:14px;height:14px;border-radius:50%;flex-shrink:0;}
+
+/* Customise trigger */
+.cust-trigger{display:flex;align-items:center;justify-content:center;gap:7px;background:rgba(255,255,255,.07);border:1.5px solid var(--card-border);color:var(--text2);border-radius:20px;padding:8px 18px;font-size:12px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;margin-bottom:32px;transition:all .2s;max-width:340px;}
+.cust-trigger:hover{border-color:var(--accent);color:var(--text);}
+.cust-trigger i{font-size:15px;}
+
 /* Launch button */
 .launch-btn{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--accent);color:var(--btn-text);border:none;border-radius:16px;padding:16px 40px;font-size:16px;font-weight:700;font-family:'Inter',sans-serif;cursor:pointer;transition:all .2s;box-shadow:0 8px 32px rgba(0,0,0,.3);letter-spacing:.01em;width:100%;max-width:340px;}
 .launch-btn:hover{transform:translateY(-1px);box-shadow:0 12px 40px rgba(0,0,0,.4);}
 .launch-btn:active{transform:translateY(0);}
 .launch-btn i{font-size:20px;}
-
 .fs-hint{margin-top:14px;font-size:11px;color:var(--text2);text-align:center;line-height:1.5;}
 .fs-hint span{color:var(--accent);font-weight:600;}
-
 .divider-line{width:40px;height:1px;background:var(--card-border);margin:40px auto;}
-
 .share-row{display:flex;gap:10px;align-items:center;justify-content:center;}
 .share-label{font-size:11px;color:var(--text2);}
 .share-link{font-size:11px;color:var(--accent);font-weight:600;text-decoration:none;background:var(--card);border:1px solid var(--card-border);border-radius:8px;padding:5px 10px;}
-
 .footer{margin-top:48px;font-size:11px;color:var(--text2);text-align:center;line-height:1.8;}
 .footer strong{color:var(--text);font-weight:500;}
+
+/* ── Customiser overlay ── */
+.cust-overlay{position:fixed;inset:0;z-index:200;display:flex;flex-direction:column;background:var(--bg2,#0F1620);transform:translateY(100%);transition:transform .35s cubic-bezier(.2,.8,.2,1);}
+.cust-overlay.open{transform:translateY(0);}
+
+.cust-header{padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:12px;flex-shrink:0;}
+.cust-back{background:rgba(255,255,255,.09);border:none;border-radius:50%;width:34px;height:34px;color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.cust-title{font-size:17px;font-weight:700;color:var(--text);flex:1;}
+.cust-apply-hd{background:var(--accent);color:var(--btn-text,#1A2332);border:none;border-radius:10px;padding:8px 16px;font-size:13px;font-weight:700;font-family:'Inter',sans-serif;cursor:pointer;white-space:nowrap;}
+
+.cust-body{flex:1;overflow:hidden;display:flex;}
+.cust-controls{flex:1;overflow-y:auto;padding:20px;max-width:520px;}
+.cust-controls::-webkit-scrollbar{display:none;}
+
+.cust-preview-col{width:210px;flex-shrink:0;background:rgba(0,0,0,.22);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;border-left:1px solid rgba(255,255,255,.06);padding:20px;}
+@media(max-width:640px){.cust-preview-col{display:none;}}
+.cust-preview-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.12em;font-weight:600;color:rgba(255,255,255,.3);}
+
+/* Customiser sections */
+.csec{margin-bottom:26px;}
+.csec-title{font-size:10px;text-transform:uppercase;letter-spacing:.14em;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:12px;}
+
+/* Preset swatches */
+.cust-presets{display:flex;gap:8px;flex-wrap:wrap;}
+.cpre{display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:18px;border:2px solid transparent;cursor:pointer;font-size:12px;font-weight:600;font-family:'Inter',sans-serif;transition:all .15s;}
+.cpre.sel{border-color:rgba(255,255,255,.85);}
+.cpre-navy{background:#1A2332;color:#C8933A;}
+.cpre-forest{background:#2A3D2A;color:#D4A843;}
+.cpre-dusk{background:#3D2820;color:#C46A3A;}
+.cpre-sky{background:#1E3A5F;color:#C8933A;}
+.cpre-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+
+/* Color pickers */
+.cust-colors{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.cpick{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:11px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.cpick-info{flex:1;min-width:0;}
+.cpick-lbl{font-size:13px;color:var(--text);font-weight:500;}
+.cpick-sub{font-size:10px;color:var(--text2);margin-top:1px;}
+input[type="color"]{width:34px;height:34px;border:2px solid rgba(255,255,255,.15);border-radius:8px;cursor:pointer;background:none;padding:0;flex-shrink:0;}
+input[type="color"]::-webkit-color-swatch-wrapper{padding:2px;}
+input[type="color"]::-webkit-color-swatch{border-radius:6px;border:none;}
+
+/* Font dropdowns */
+.cust-fonts{display:flex;flex-direction:column;gap:9px;}
+.cust-font-row{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:11px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.cust-font-lbl{font-size:13px;color:var(--text);font-weight:500;}
+.cust-font-row select{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:8px;color:var(--text);font-family:'Inter',sans-serif;font-size:12px;padding:5px 9px;cursor:pointer;max-width:170px;}
+
+/* Stop buttons */
+.cust-stops{display:flex;gap:7px;}
+.stop-btn{flex:1;padding:9px 6px;border-radius:10px;border:1.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(255,255,255,.45);font-size:11px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;text-align:center;transition:all .15s;line-height:1.4;}
+.stop-btn small{display:block;font-size:9px;font-weight:400;margin-top:2px;opacity:.7;}
+.stop-btn.on{border-color:var(--accent);background:rgba(200,147,58,.12);color:var(--text);}
+
+/* ── Mini phone preview ── */
+.mini-phone{width:150px;border-radius:18px;overflow:hidden;box-shadow:0 10px 32px rgba(0,0,0,.55);display:flex;flex-direction:column;}
+.mini-hdr{padding:8px 10px 7px;display:flex;align-items:center;gap:5px;flex-shrink:0;}
+.mini-wm{font-size:8px;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap;}
+.mini-scr{flex:1;padding:8px 7px;display:flex;flex-direction:column;gap:5px;}
+.mini-greet{font-size:8px;font-weight:600;padding:1px 2px;opacity:.6;}
+.mini-card{border-radius:8px;padding:9px 9px;}
+.mini-albl{font-size:7px;text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-bottom:2px;}
+.mini-aval{font-size:14px;font-weight:700;margin-bottom:2px;letter-spacing:-.01em;}
+.mini-asub{font-size:7px;color:#3A7A3A;margin-bottom:6px;}
+.mini-abtn{border-radius:5px;padding:4px 7px;font-size:7px;font-weight:700;display:inline-block;}
+.mini-tabs{display:flex;padding:6px 0 8px;flex-shrink:0;}
+.mini-tab{flex:1;font-size:6px;font-weight:600;text-align:center;color:rgba(255,255,255,.3);}
 </style>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"/>
@@ -80,6 +150,123 @@ body{background:var(--bg);color:var(--text);}
 
 <div class="bg-grad"></div>
 
+<!-- ── Customiser overlay ── -->
+<div class="cust-overlay" id="cust-overlay">
+  <div class="cust-header">
+    <button class="cust-back" onclick="closeCustomiser()" aria-label="Back">
+      <i class="ti ti-arrow-left"></i>
+    </button>
+    <span class="cust-title">Brand customiser</span>
+    <button class="cust-apply-hd" onclick="applyAndClose()">Apply & close</button>
+  </div>
+  <div class="cust-body">
+    <!-- Controls -->
+    <div class="cust-controls">
+      <div class="csec">
+        <div class="csec-title">Start from a preset</div>
+        <div class="cust-presets">
+          <button class="cpre cpre-navy sel" id="cpre-navy" onclick="loadPreset('navy')"><span class="cpre-dot" style="background:#C8933A"></span>Navy</button>
+          <button class="cpre cpre-forest" id="cpre-forest" onclick="loadPreset('forest')"><span class="cpre-dot" style="background:#D4A843"></span>Forest</button>
+          <button class="cpre cpre-dusk" id="cpre-dusk" onclick="loadPreset('dusk')"><span class="cpre-dot" style="background:#C46A3A"></span>Dusk</button>
+          <button class="cpre cpre-sky" id="cpre-sky" onclick="loadPreset('sky')"><span class="cpre-dot" style="background:#C8933A"></span>Sky</button>
+        </div>
+      </div>
+
+      <div class="csec">
+        <div class="csec-title">Colours</div>
+        <div class="cust-colors">
+          <div class="cpick">
+            <div class="cpick-info"><div class="cpick-lbl">Primary</div><div class="cpick-sub">Header &amp; dark surfaces</div></div>
+            <input type="color" id="cp-p" value="#1A2332" oninput="onPickerChange()">
+          </div>
+          <div class="cpick">
+            <div class="cpick-info"><div class="cpick-lbl">Accent</div><div class="cpick-sub">Highlights &amp; CTA</div></div>
+            <input type="color" id="cp-a" value="#C8933A" oninput="onPickerChange()">
+          </div>
+          <div class="cpick">
+            <div class="cpick-info"><div class="cpick-lbl">Surface</div><div class="cpick-sub">Page background</div></div>
+            <input type="color" id="cp-s" value="#FAF8F4" oninput="onPickerChange()">
+          </div>
+          <div class="cpick">
+            <div class="cpick-info"><div class="cpick-lbl">Surface 2</div><div class="cpick-sub">Cards &amp; inner panels</div></div>
+            <input type="color" id="cp-s2" value="#F0EDE6" oninput="onPickerChange()">
+          </div>
+        </div>
+      </div>
+
+      <div class="csec">
+        <div class="csec-title">Typography</div>
+        <div class="cust-fonts">
+          <div class="cust-font-row">
+            <span class="cust-font-lbl">Display font</span>
+            <select id="sel-fd" onchange="onPickerChange()">
+              <option value="Playfair Display">Playfair Display</option>
+              <option value="Cormorant Garamond">Cormorant Garamond</option>
+              <option value="Lora">Lora</option>
+              <option value="Merriweather">Merriweather</option>
+              <option value="Georgia">Georgia</option>
+            </select>
+          </div>
+          <div class="cust-font-row">
+            <span class="cust-font-lbl">Body font</span>
+            <select id="sel-fb" onchange="onPickerChange()">
+              <option value="Inter">Inter</option>
+              <option value="DM Sans">DM Sans</option>
+              <option value="Nunito">Nunito</option>
+              <option value="Outfit">Outfit</option>
+              <option value="system-ui">System UI</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="csec">
+        <div class="csec-title">Shape</div>
+        <div class="cust-stops">
+          <button class="stop-btn" id="stop-r0" onclick="setRadiusStop(0)">Sharp<small>4px</small></button>
+          <button class="stop-btn on" id="stop-r1" onclick="setRadiusStop(1)">Soft<small>12px</small></button>
+          <button class="stop-btn" id="stop-r2" onclick="setRadiusStop(2)">Round<small>20px</small></button>
+        </div>
+      </div>
+
+      <div class="csec">
+        <div class="csec-title">Motion</div>
+        <div class="cust-stops">
+          <button class="stop-btn" id="stop-m0" onclick="setMotionStop(0)">Snappy<small>0.12s</small></button>
+          <button class="stop-btn on" id="stop-m1" onclick="setMotionStop(1)">Standard<small>0.22s</small></button>
+          <button class="stop-btn" id="stop-m2" onclick="setMotionStop(2)">Relaxed<small>0.38s</small></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live preview -->
+    <div class="cust-preview-col">
+      <div class="cust-preview-lbl">Live preview</div>
+      <div class="mini-phone" id="mini-phone">
+        <div class="mini-hdr" id="mp-hdr">
+          <img src="images/rp-icon-white.svg" width="12" height="12" alt="">
+          <span class="mini-wm" id="mp-wm">Regional Prosperity</span>
+        </div>
+        <div class="mini-scr" id="mp-scr">
+          <div class="mini-greet" id="mp-greet">Good morning, Sarah</div>
+          <div class="mini-card" id="mp-card">
+            <div class="mini-albl" id="mp-albl">Portfolio value</div>
+            <div class="mini-aval" id="mp-aval">$482,500</div>
+            <div class="mini-asub">↑ 12.4% this year</div>
+            <div class="mini-abtn" id="mp-abtn">View portfolio</div>
+          </div>
+        </div>
+        <div class="mini-tabs" id="mp-tabs">
+          <div class="mini-tab" id="mp-tab0" style="font-weight:700">Home</div>
+          <div class="mini-tab">Library</div>
+          <div class="mini-tab">Profile</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Landing page ── -->
 <div class="page">
   <div class="logo-row">
     <span class="rp-icon-lg">
@@ -114,6 +301,16 @@ body{background:var(--bg);color:var(--text);}
     <button class="th-btn tb-sky" id="th-sky" onclick="setTheme('sky',this)"><span class="th-btn-swatch"></span>Sky & Gold</button>
   </div>
 
+  <div class="custom-chip" id="custom-chip">
+    <span class="custom-swatch" id="custom-swatch"></span>
+    Custom theme
+  </div>
+
+  <button class="cust-trigger" onclick="openCustomiser()">
+    <i class="ti ti-color-swatch" aria-hidden="true"></i>
+    Customise brand →
+  </button>
+
   <button class="launch-btn" onclick="launch()">
     <i class="ti ti-device-mobile" aria-hidden="true"></i>
     Launch
@@ -128,7 +325,7 @@ body{background:var(--bg);color:var(--text);}
 
   <div class="share-row">
     <span class="share-label">Share</span>
-    <a class="share-link" id="share-url" href="#">regionalprosperity.fynancial.demo</a>
+    <a class="share-link" id="share-url" href="#">loading…</a>
   </div>
 
   <div class="footer">
@@ -140,7 +337,19 @@ body{background:var(--bg);color:var(--text);}
 <script>
 var stage = 'prospect';
 var theme = 'navy';
+var customTheme = null;
+var custRadiusStop = 1;
+var custMotionStop = 1;
 var themeClasses = {navy:'th-navy',forest:'th-forest',dusk:'th-dusk',sky:'th-sky'};
+
+var presets = {
+  navy:   {p:'#1A2332',a:'#C8933A',s:'#FAF8F4',s2:'#F0EDE6',fd:'Playfair Display',fb:'Inter',r:'12',dur:'0.22'},
+  forest: {p:'#2A3D2A',a:'#D4A843',s:'#F8F5EE',s2:'#EDE9DF',fd:'Playfair Display',fb:'Inter',r:'12',dur:'0.22'},
+  dusk:   {p:'#3D2820',a:'#C46A3A',s:'#FAF4F0',s2:'#F0E8E0',fd:'Playfair Display',fb:'Inter',r:'12',dur:'0.22'},
+  sky:    {p:'#1E3A5F',a:'#C8933A',s:'#F4F8FC',s2:'#E6EDF5',fd:'Playfair Display',fb:'Inter',r:'12',dur:'0.22'}
+};
+var radiusStops = [4, 12, 20];
+var motionStops = ['0.12', '0.22', '0.38'];
 
 function setStage(s) {
   stage = s;
@@ -151,24 +360,165 @@ function setStage(s) {
 
 function setTheme(t, btn) {
   theme = t;
-  document.querySelectorAll('.th-btn').forEach(b => b.classList.remove('active'));
+  customTheme = null;
+  document.querySelectorAll('.th-btn').forEach(function(b){b.classList.remove('active');});
   btn.classList.add('active');
-  document.body.className = '';
-  document.body.classList.add('th-' + t);
+  document.body.className = 'th-' + t;
+  document.getElementById('custom-chip').classList.remove('visible');
+  syncCustomiserToPreset(t);
   updateShareUrl();
+}
+
+function openCustomiser() {
+  document.getElementById('cust-overlay').classList.add('open');
+}
+
+function closeCustomiser() {
+  document.getElementById('cust-overlay').classList.remove('open');
+}
+
+function applyAndClose() {
+  var vals = readCustomiserValues();
+  var matchedPreset = null;
+  for (var k in presets) {
+    var pre = presets[k];
+    if (pre.p === vals.p && pre.a === vals.a && pre.s === vals.s && pre.s2 === vals.s2 &&
+        pre.fd === vals.fd && pre.fb === vals.fb && pre.r === vals.r && pre.dur === vals.dur) {
+      matchedPreset = k; break;
+    }
+  }
+  if (matchedPreset) {
+    customTheme = null;
+    theme = matchedPreset;
+    document.querySelectorAll('.th-btn').forEach(function(b){b.classList.remove('active');});
+    var btn = document.getElementById('th-' + matchedPreset);
+    if (btn) btn.classList.add('active');
+    document.body.className = 'th-' + matchedPreset;
+    document.getElementById('custom-chip').classList.remove('visible');
+  } else {
+    customTheme = vals;
+    document.querySelectorAll('.th-btn').forEach(function(b){b.classList.remove('active');});
+    document.getElementById('custom-chip').classList.add('visible');
+    document.getElementById('custom-swatch').style.background = vals.a;
+  }
+  updateShareUrl();
+  closeCustomiser();
+}
+
+function loadPreset(name) {
+  var pre = presets[name];
+  if (!pre) return;
+  document.getElementById('cp-p').value = pre.p;
+  document.getElementById('cp-a').value = pre.a;
+  document.getElementById('cp-s').value = pre.s;
+  document.getElementById('cp-s2').value = pre.s2;
+  setSelectVal('sel-fd', pre.fd);
+  setSelectVal('sel-fb', pre.fb);
+  var rIdx = radiusStops.indexOf(parseInt(pre.r));
+  setRadiusStop(rIdx >= 0 ? rIdx : 1);
+  var mIdx = motionStops.indexOf(pre.dur);
+  setMotionStop(mIdx >= 0 ? mIdx : 1);
+  document.querySelectorAll('.cpre').forEach(function(b){b.classList.remove('sel');});
+  var pBtn = document.getElementById('cpre-' + name);
+  if (pBtn) pBtn.classList.add('sel');
+  updatePreview();
+}
+
+function syncCustomiserToPreset(name) {
+  loadPreset(name);
+}
+
+function onPickerChange() {
+  document.querySelectorAll('.cpre').forEach(function(b){b.classList.remove('sel');});
+  updatePreview();
+}
+
+function setRadiusStop(idx) {
+  custRadiusStop = idx;
+  for (var i = 0; i < 3; i++) {
+    document.getElementById('stop-r' + i).classList.toggle('on', i === idx);
+  }
+  updatePreview();
+}
+
+function setMotionStop(idx) {
+  custMotionStop = idx;
+  for (var i = 0; i < 3; i++) {
+    document.getElementById('stop-m' + i).classList.toggle('on', i === idx);
+  }
+}
+
+function setSelectVal(id, val) {
+  var sel = document.getElementById(id);
+  for (var i = 0; i < sel.options.length; i++) {
+    if (sel.options[i].value === val) { sel.selectedIndex = i; break; }
+  }
+}
+
+function readCustomiserValues() {
+  return {
+    p: document.getElementById('cp-p').value,
+    a: document.getElementById('cp-a').value,
+    s: document.getElementById('cp-s').value,
+    s2: document.getElementById('cp-s2').value,
+    fd: document.getElementById('sel-fd').value,
+    fb: document.getElementById('sel-fb').value,
+    r: String(radiusStops[custRadiusStop]),
+    dur: motionStops[custMotionStop]
+  };
+}
+
+function hexToRgba(hex, alpha) {
+  var r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+  return 'rgba('+r+','+g+','+b+','+alpha+')';
+}
+
+function updatePreview() {
+  var ct = readCustomiserValues();
+  var r = radiusStops[custRadiusStop];
+  var rSm = Math.max(3, r - 4);
+
+  document.getElementById('mp-hdr').style.background = ct.p;
+  document.getElementById('mp-wm').style.fontFamily = '"' + ct.fd + '", serif';
+  document.getElementById('mp-scr').style.background = ct.s;
+  document.getElementById('mp-greet').style.color = ct.p;
+  var card = document.getElementById('mp-card');
+  card.style.background = ct.s;
+  card.style.borderRadius = r + 'px';
+  card.style.border = '1px solid ' + hexToRgba(ct.p, 0.09);
+  document.getElementById('mp-albl').style.color = ct.a;
+  var val = document.getElementById('mp-aval');
+  val.style.color = ct.p;
+  val.style.fontFamily = '"' + ct.fd + '", serif';
+  var abtn = document.getElementById('mp-abtn');
+  abtn.style.background = ct.a;
+  abtn.style.color = ct.p;
+  abtn.style.borderRadius = rSm + 'px';
+  document.getElementById('mp-tabs').style.background = ct.p;
+  document.getElementById('mp-tab0').style.color = ct.a;
+  document.getElementById('mini-phone').style.background = ct.s2;
+}
+
+function buildCtParam() {
+  if (!customTheme) return null;
+  try { return encodeURIComponent(btoa(JSON.stringify(customTheme))); } catch(e) { return null; }
 }
 
 function updateShareUrl() {
   var base = window.location.href.replace('landing.html','').replace(/\?.*$/,'');
-  var url = base + 'app.html?stage=' + stage + '&theme=' + theme;
+  var url = base + 'app.html?stage=' + stage;
+  var ct = buildCtParam();
+  url += ct ? ('&ct=' + ct) : ('&theme=' + theme);
   var el = document.getElementById('share-url');
   el.href = url;
-  el.textContent = 'app.html?stage=' + stage + '&theme=' + theme;
+  el.textContent = ct ? 'Copy share link (custom)' : ('app.html?stage=' + stage + '&theme=' + theme);
 }
 
 function launch() {
   var base = window.location.href.replace('landing.html','').replace(/\?.*$/,'');
-  var url = base + 'app.html?stage=' + stage + '&theme=' + theme;
+  var url = base + 'app.html?stage=' + stage;
+  var ct = buildCtParam();
+  url += ct ? ('&ct=' + ct) : ('&theme=' + theme);
   var win = window.open(url, '_blank');
   if (win) {
     setTimeout(function() {
@@ -181,7 +531,7 @@ function launch() {
   }
 }
 
-// Read URL params to pre-select if shared
+// Read URL params on load
 (function(){
   var params = new URLSearchParams(window.location.search);
   var s = params.get('stage');
@@ -189,15 +539,16 @@ function launch() {
   if (s === 'client') setStage('client');
   if (t && themeClasses[t]) {
     theme = t;
-    document.querySelectorAll('.th-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.th-btn').forEach(function(b){b.classList.remove('active');});
     var btn = document.getElementById('th-' + t);
     if (btn) btn.classList.add('active');
     document.body.className = 'th-' + t;
+    syncCustomiserToPreset(t);
   }
   updateShareUrl();
 })();
 
-// Detect mobile and update hint
+// Mobile hint
 if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
   document.getElementById('fs-hint').innerHTML = 'For the best experience on iPhone: tap <span>Share → Add to Home Screen</span>, then open the app from your home screen.';
 } else if (/Android/.test(navigator.userAgent)) {
@@ -205,6 +556,9 @@ if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
 } else {
   document.getElementById('fs-hint').innerHTML = 'Tap Launch to open in <span>full screen</span> — press Esc to exit.';
 }
+
+// Init preview
+updatePreview();
 </script>
 
 </body>
