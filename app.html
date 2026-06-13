@@ -221,19 +221,6 @@
 </head>
 <body>
 <div class="wrapper" id="app">
-<div class="controls">
-  <span class="ctrl-label">Stage</span>
-  <select class="lc-select prospect" id="lcsel" onchange="setLifecycle(this)">
-    <option value="prospect">Prospect — Sarah</option>
-    <option value="client">Client — Sarah</option>
-  </select>
-  <div class="divider"></div>
-  <span class="ctrl-label">Brand</span>
-  <button class="theme-btn tb0 active" onclick="setTheme(0,this)">Navy & Gold</button>
-  <button class="theme-btn tb1" onclick="setTheme(1,this)">Forest</button>
-  <button class="theme-btn tb2" onclick="setTheme(2,this)">Dusk</button>
-  <button class="theme-btn tb3" onclick="setTheme(3,this)">Sky</button>
-</div>
 
 <div class="phone" id="phone">
   <div class="status-bar">
@@ -740,10 +727,8 @@ document.getElementById('ch-input').addEventListener('keydown',function(e){if(e.
   var s=window.__rpStage||'ph';
   var t=window.__rpTheme||'navy';
   lc=s;
-  if(s==='ch'){var sel=document.getElementById('lcsel');sel.value='client';sel.className='lc-select client';}
   var tIdx=themeMap[t]!==undefined?themeMap[t]:0;
   document.getElementById('phone').className='phone '+(themes[tIdx]||'');
-  document.querySelectorAll('.theme-btn').forEach(function(b,i){b.classList.toggle('active',i===tIdx);});
   switchTab(lc,'home');
   var ls=document.getElementById('__rp_loading');if(ls)ls.parentNode.removeChild(ls);
 })();
