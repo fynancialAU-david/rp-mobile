@@ -926,6 +926,14 @@
     <button class="settings-close" onclick="closeSettings()"><i class="ti ti-x"></i></button>
   </div>
   <div class="settings-body">
+    <div class="settings-row" style="cursor:pointer" onclick="document.getElementById('prof-pic-input').click()">
+      <div class="settings-row-left"><i class="ti ti-camera"></i><span>Profile photo</span></div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <img id="settings-avatar-preview" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&auto=format&fit=crop&q=80&crop=faces" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:1.5px solid var(--b)"/>
+        <i class="ti ti-chevron-right" style="font-size:18px;color:var(--t3)"></i>
+      </div>
+    </div>
+    <input type="file" id="prof-pic-input" accept="image/*" style="display:none" onchange="updateProfilePic(this)"/>
     <div class="settings-row">
       <div class="settings-row-left"><i class="ti ti-fingerprint"></i><span>Face ID / Touch ID</span></div>
       <div class="toggle-wrap toggle-on" id="tog-faceid" onclick="togSetting('tog-faceid')"><div class="toggle-knob"></div></div>
@@ -968,6 +976,19 @@ function saveOverride(id){var el=document.getElementById(id),inp=el.querySelecto
 function openSettings(){var o=document.getElementById('settings-overlay'),s=document.getElementById('settings-sheet');o.classList.add('open');s.classList.add('open');}
 function closeSettings(){var o=document.getElementById('settings-overlay'),s=document.getElementById('settings-sheet');s.classList.remove('open');setTimeout(function(){o.classList.remove('open');},280);}
 function togSetting(id){document.getElementById(id).classList.toggle('toggle-on');}
+function updateProfilePic(input){
+  if(!input.files||!input.files[0])return;
+  var reader=new FileReader();
+  reader.onload=function(e){
+    var src=e.target.result;
+    // Update all avatar/hero images
+    document.querySelectorAll('.prof-av,.hero-client-avatar,.hero-client-bg').forEach(function(el){el.src=src;});
+    // Update settings preview
+    var prev=document.getElementById('settings-avatar-preview');
+    if(prev)prev.src=src;
+  };
+  reader.readAsDataURL(input.files[0]);
+}
 function acceptDisclaimer(){localStorage.setItem('rp_disclaimer_accepted','1');document.getElementById('disclaimer-overlay').style.display='none';}
 function initInstallBanner(){var isIOS=/iPhone|iPad|iPod/.test(navigator.userAgent);var isStandalone=window.navigator.standalone===true||window.matchMedia('(display-mode: standalone)').matches;if(isIOS&&!isStandalone&&!sessionStorage.getItem('rp_banner_dismissed')){document.getElementById('install-banner').classList.add('visible');}}
 function dismissInstallBanner(){sessionStorage.setItem('rp_banner_dismissed','1');document.getElementById('install-banner').classList.remove('visible');}
