@@ -12,7 +12,7 @@
   <meta name="theme-color" content="#1A2332">
   <link rel="manifest" href="manifest.json">
   <title>Regional Prosperity</title>
-<script>(function(){var p=new URLSearchParams(location.search);window.__rpStage=p.get('stage')==='client'?'ch':'ph';var t=p.get('theme');window.__rpTheme=(['navy','forest','dusk','sky'].indexOf(t)>=0)?t:'navy';var ct=p.get('ct');if(ct){try{window.__rpCustomTheme=JSON.parse(atob(ct));}catch(e){}}})();</script>
+<script>(function(){var p=new URLSearchParams(location.search);var stage=p.get('stage');window.__rpStage=stage==='client'?'ch':'ph';window.__rpScreen=(p.get('screen')==='login'||stage===null)?'login':null;var t=p.get('theme');window.__rpTheme=(['navy','forest','dusk','sky'].indexOf(t)>=0)?t:'navy';var ct=p.get('ct');if(ct){try{window.__rpCustomTheme=JSON.parse(atob(ct));}catch(e){}}})();</script>
 <style id="__rp_loading">#app{visibility:hidden;}</style>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
   <style>
@@ -312,11 +312,51 @@
   .phone{width:100%;height:100vh;height:100dvh;min-height:unset;border-radius:0;box-shadow:none;}
   .screen{min-height:0;}
   .status-bar{display:none;}
+  .controls{display:none;}
 }
+.lc-select.login{background:#1A2332;color:rgba(255,255,255,.7);}
+.login-mode .hdr-icons{display:none;}
+.login-hero{background:var(--p);padding:36px 24px 32px;text-align:center;position:relative;overflow:hidden;}
+.login-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:rgba(200,147,58,.07);}
+.login-hero::after{content:'';position:absolute;bottom:-40px;left:-20px;width:150px;height:150px;border-radius:50%;background:rgba(200,147,58,.04);}
+.login-hero-logo{margin-bottom:18px;position:relative;z-index:1;}
+.login-hero-title{font-family:var(--fd);color:#fff;font-size:26px;font-weight:600;margin-bottom:8px;position:relative;z-index:1;}
+.login-hero-sub{font-size:15px;color:rgba(255,255,255,.6);line-height:1.5;position:relative;z-index:1;}
+.login-body{padding:24px 20px 16px;}
+.login-field-label{font-size:12px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;}
+.login-phone-row{display:flex;border:1.5px solid var(--b);border-radius:11px;overflow:hidden;background:var(--s);}
+.login-cc{padding:13px 14px;font-size:16px;font-weight:600;color:var(--t);border-right:1.5px solid var(--b);background:var(--s2);flex-shrink:0;}
+.login-phone-input{flex:1;border:none;outline:none;padding:13px 14px;font-size:16px;font-family:var(--fb);color:var(--t);background:transparent;}
+.login-or{display:flex;align-items:center;gap:12px;margin:20px 0 16px;}
+.login-or-line{flex:1;height:1px;background:var(--b);}
+.login-or-text{font-size:14px;color:var(--t3);}
+.otp-row{display:flex;gap:7px;justify-content:center;margin-bottom:6px;}
+.otp-box{width:44px;height:54px;border:1.5px solid var(--b);border-radius:11px;text-align:center;font-size:22px;font-weight:600;font-family:var(--fd);color:var(--t);background:var(--s);outline:none;-webkit-appearance:none;transition:border-color .15s;}
+.otp-box:focus{border-color:var(--a);}
+.resend-row{text-align:center;margin:16px 0 4px;font-size:14px;min-height:20px;}
+.resend-link{color:var(--a);font-weight:600;cursor:pointer;}
+.resend-cd{color:var(--t3);}
+.login-back{display:flex;align-items:center;gap:6px;color:var(--a);font-size:15px;font-weight:600;cursor:pointer;padding:14px 20px 0;}
+.login-back i{font-size:20px;}
 </style>
 </head>
 <body>
 <div class="wrapper" id="app">
+
+<div class="controls" id="demo-controls">
+  <span class="ctrl-label">Screen</span>
+  <select class="lc-select login" id="stage-select" onchange="setStage(this)">
+    <option value="login">Login</option>
+    <option value="prospect">Prospect</option>
+    <option value="client">Client</option>
+  </select>
+  <div class="divider"></div>
+  <span class="ctrl-label">Theme</span>
+  <button class="theme-btn tb0 active" onclick="setTheme(0,this)">Navy</button>
+  <button class="theme-btn tb1" onclick="setTheme(1,this)">Forest</button>
+  <button class="theme-btn tb2" onclick="setTheme(2,this)">Dusk</button>
+  <button class="theme-btn tb3" onclick="setTheme(3,this)">Sky</button>
+</div>
 
 <div class="disclaimer-overlay" id="disclaimer-overlay">
   <div class="disclaimer-card">
@@ -356,6 +396,52 @@
   </div>
 
   <div class="screen" id="screen">
+
+    <!-- LOGIN SCREEN -->
+    <div class="page" id="login-screen">
+      <div id="login-mobile-state">
+        <div class="login-hero">
+          <div class="login-hero-logo"><img src="images/rp-icon-white.svg" width="52" height="52" alt=""/></div>
+          <div class="login-hero-title">Welcome back</div>
+          <div class="login-hero-sub">Sign in to your Regional Prosperity account</div>
+        </div>
+        <div class="login-body">
+          <div class="login-field-label">Mobile number</div>
+          <div class="login-phone-row">
+            <div class="login-cc">+61</div>
+            <input class="login-phone-input" type="tel" id="login-mobile-input" placeholder="04XX XXX XXX" inputmode="numeric"/>
+          </div>
+          <button class="cta" onclick="loginSendCode()" style="margin-top:20px">Send verification code</button>
+          <div class="login-or"><div class="login-or-line"></div><span class="login-or-text">or</span><div class="login-or-line"></div></div>
+          <button class="cta-outline">Send me an email link</button>
+        </div>
+      </div>
+      <div id="login-otp-state" style="display:none">
+        <div class="login-hero">
+          <div class="login-hero-logo"><img src="images/rp-icon-white.svg" width="52" height="52" alt=""/></div>
+          <div class="login-hero-title">Enter your code</div>
+          <div class="login-hero-sub">We sent a 6-digit code to <span id="login-mobile-display">your mobile</span></div>
+        </div>
+        <div class="login-back" onclick="loginBack()"><i class="ti ti-arrow-left" aria-hidden="true"></i>Change number</div>
+        <div class="login-body">
+          <div class="otp-row" id="otp-row">
+            <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]"/>
+            <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]"/>
+            <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]"/>
+            <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]"/>
+            <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]"/>
+            <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]"/>
+          </div>
+          <button class="cta" onclick="loginVerify()" style="margin-top:20px">Verify</button>
+          <div class="resend-row">
+            <span class="resend-link" id="resend-link" onclick="loginResend()" style="display:none">Resend code</span>
+            <span class="resend-cd" id="resend-cd">Resend in <span id="resend-timer">30</span>s</span>
+          </div>
+          <div class="login-or"><div class="login-or-line"></div><span class="login-or-text">or</span><div class="login-or-line"></div></div>
+          <button class="cta-outline">Send me an email link</button>
+        </div>
+      </div>
+    </div>
 
     <!-- HOME PROSPECT -->
     <div class="page active" id="ph-home">
@@ -993,9 +1079,18 @@
 <script>
 var lc='ph',curTab='home';
 var themes=['','th-fw','th-dc','th-sg'];
-function setLifecycle(sel){lc=sel.value==='prospect'?'ph':'ch';sel.className='lc-select '+sel.value;switchTab(lc,curTab);document.querySelectorAll('.thread-view').forEach(t=>t.classList.remove('open'));document.querySelectorAll('[id$="-msg-list"]').forEach(m=>m.style.display='block');}
+var resendTimer=null;
+function setStage(sel){var val=sel.value;if(val==='login'){showLoginScreen();}else{lc=val==='client'?'ch':'ph';sel.className='lc-select '+val;hideLoginScreen();switchTab(lc,curTab);document.querySelectorAll('.thread-view').forEach(t=>t.classList.remove('open'));document.querySelectorAll('[id$="-msg-list"]').forEach(m=>m.style.display='block');}}
+function setLifecycle(sel){setStage(sel);}
+function showLoginScreen(){document.getElementById('phone').classList.add('login-mode');document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('login-screen').classList.add('active');document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));var ss=document.getElementById('stage-select');if(ss){ss.value='login';ss.className='lc-select login';}}
+function hideLoginScreen(){document.getElementById('phone').classList.remove('login-mode');}
+function loginSendCode(){var m=document.getElementById('login-mobile-input').value.trim()||'your mobile';document.getElementById('login-mobile-display').textContent=m;document.getElementById('login-mobile-state').style.display='none';document.getElementById('login-otp-state').style.display='block';startResendCd();var boxes=document.querySelectorAll('.otp-box');boxes.forEach(function(b){b.value='';});if(boxes[0])boxes[0].focus();}
+function loginBack(){document.getElementById('login-otp-state').style.display='none';document.getElementById('login-mobile-state').style.display='block';if(resendTimer)clearInterval(resendTimer);}
+function loginVerify(){}
+function loginResend(){startResendCd();}
+function startResendCd(){var link=document.getElementById('resend-link'),cd=document.getElementById('resend-cd'),timerEl=document.getElementById('resend-timer');link.style.display='none';cd.style.display='inline';var n=30;timerEl.textContent=n;if(resendTimer)clearInterval(resendTimer);resendTimer=setInterval(function(){n--;timerEl.textContent=n;if(n<=0){clearInterval(resendTimer);cd.style.display='none';link.style.display='inline';}},1000);}
 function switchTab(prefix,tab){curTab=tab;document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));var pg=document.getElementById(prefix+'-'+tab)||document.getElementById('ph-'+tab);if(pg)pg.classList.add('active');var tb=document.getElementById('tab-'+tab);if(tb)tb.classList.add('active');document.getElementById('screen').scrollTop=0;}
-function setTheme(idx,btn){document.getElementById('phone').className='phone '+(themes[idx]||'');document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+function setTheme(idx,btn){var ph=document.getElementById('phone');var loginMode=ph.classList.contains('login-mode');ph.className='phone '+(themes[idx]||'');if(loginMode)ph.classList.add('login-mode');document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
 function openThread(prefix){var l=document.getElementById(prefix+'-msg-list'),t=document.getElementById(prefix+'-thread');if(l)l.style.display='none';if(t)t.classList.add('open');}
 function closeThread(prefix){var l=document.getElementById(prefix+'-msg-list'),t=document.getElementById(prefix+'-thread');if(l)l.style.display='block';if(t)t.classList.remove('open');}
 function sendMsg(prefix){var input=document.getElementById(prefix+'-input'),text=input.value.trim();if(!text)return;var msgs=document.getElementById(prefix+'-thread-msgs');var w=document.createElement('div');w.className='bw mine';w.innerHTML='<div class="bubble mine">'+text+'</div><div class="btime">Just now</div>';msgs.appendChild(w);input.value='';msgs.scrollTop=msgs.scrollHeight;setTimeout(function(){var r=document.createElement('div');r.className='bw theirs';r.innerHTML='<div class="bubble theirs">Thanks Sarah, I\'ll get back to you shortly.</div><div class="btime">Just now</div>';msgs.appendChild(r);msgs.scrollTop=msgs.scrollHeight;},1100);}
@@ -1084,10 +1179,15 @@ document.getElementById('ch-input').addEventListener('keydown',function(e){if(e.
     var dfFonts=['Playfair Display','Inter','Georgia','system-ui'];
     [ct.fd,ct.fb].forEach(function(f){if(f&&dfFonts.indexOf(f)<0){var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family='+f.replace(/ /g,'+').replace(/'/g,'')+':wght@400;500;600&display=swap';document.head.appendChild(l);}});
   }
-  switchTab(lc,'home');
+  var ss=document.getElementById('stage-select');
+  if(ss){if(window.__rpScreen==='login'){ss.value='login';ss.className='lc-select login';}else{ss.value=lc==='ch'?'client':'prospect';ss.className='lc-select '+(lc==='ch'?'client':'prospect');}}
+  var tBtns=document.querySelectorAll('.theme-btn');tBtns.forEach(function(b){b.classList.remove('active');});if(tBtns[tIdx])tBtns[tIdx].classList.add('active');
+  if(window.__rpScreen==='login'){showLoginScreen();}else{switchTab(lc,'home');}
   var ls=document.getElementById('__rp_loading');if(ls)ls.parentNode.removeChild(ls);
   initDisclaimer();
   initInstallBanner();
+  var otpBoxes=document.querySelectorAll('.otp-box');
+  otpBoxes.forEach(function(box,i){box.addEventListener('input',function(){if(this.value.length===1&&i<otpBoxes.length-1)otpBoxes[i+1].focus();});box.addEventListener('keydown',function(e){if(e.key==='Backspace'&&!this.value&&i>0)otpBoxes[i-1].focus();});});
 })();
 </script>
 
