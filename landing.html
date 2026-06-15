@@ -66,7 +66,8 @@ body{background:var(--bg);color:var(--text);}
 .cust-trigger i{font-size:15px;}
 
 /* Launch button */
-.launch-btn{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--accent);color:var(--btn-text);border:none;border-radius:16px;padding:16px 40px;font-size:16px;font-weight:700;font-family:'Inter',sans-serif;cursor:pointer;transition:all .2s;box-shadow:0 8px 32px rgba(0,0,0,.3);letter-spacing:.01em;width:100%;max-width:340px;}
+.launch-btn{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--accent);color:var(--btn-text);border:none;border-radius:16px;padding:16px 40px;font-size:16px;font-weight:700;font-family:'Inter',sans-serif;cursor:pointer;transition:all .2s;box-shadow:0 8px 32px rgba(0,0,0,.3);letter-spacing:.01em;width:100%;max-width:340px;text-decoration:none;}
+.skip-login-lbl{display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;color:rgba(255,255,255,.55);cursor:pointer;margin-top:6px;} .skip-login-lbl input{cursor:pointer;accent-color:#C8933A;}
 .launch-btn:hover{transform:translateY(-1px);box-shadow:0 12px 40px rgba(0,0,0,.4);}
 .launch-btn:active{transform:translateY(0);}
 .launch-btn i{font-size:20px;}
@@ -314,10 +315,16 @@ input[type="color"]::-webkit-color-swatch{border-radius:6px;border:none;}
     Customise brand →
   </button>
 
-  <button class="launch-btn" onclick="launch()">
+  <a class="launch-btn" id="launch-btn-prospect" href="app.html?stage=prospect&theme=navy" data-base-href="app.html?stage=prospect&theme=navy" target="_blank">
     <i class="ti ti-device-mobile" aria-hidden="true"></i>
-    Launch
-  </button>
+    Launch — Prospect
+  </a>
+  <label class="skip-login-lbl"><input type="checkbox" id="skip-login-prospect" checked onchange="updateLaunchUrl('prospect')"> Skip login</label>
+  <a class="launch-btn" id="launch-btn-client" href="app.html?stage=client&theme=navy" data-base-href="app.html?stage=client&theme=navy" target="_blank" style="margin-top:16px">
+    <i class="ti ti-device-mobile" aria-hidden="true"></i>
+    Launch — Active Client
+  </a>
+  <label class="skip-login-lbl"><input type="checkbox" id="skip-login-client" checked onchange="updateLaunchUrl('client')"> Skip login</label>
 
   <div class="fs-hint" id="fs-hint">
     Opens in <span>full screen</span> for the most realistic experience.<br/>
@@ -507,11 +514,16 @@ function buildCtParam() {
   try { return encodeURIComponent(btoa(JSON.stringify(customTheme))); } catch(e) { return null; }
 }
 
+function updateLaunchUrl(s){var c=document.getElementById('skip-login-'+s);var b=document.getElementById('launch-btn-'+s);if(!b)return;var h=b.getAttribute('data-base-href');b.href=c.checked?h:h+'&screen=login';}
 function updateShareUrl() {
   var base = window.location.href.replace('landing.html','').replace(/\?.*$/,'');
-  var url = base + 'app.html?stage=' + stage;
   var ct = buildCtParam();
-  url += ct ? ('&ct=' + ct) : ('&theme=' + theme);
+  var themeParam = ct ? ('&ct=' + ct) : ('&theme=' + theme);
+  var bPh = document.getElementById('launch-btn-prospect');
+  if (bPh) { bPh.setAttribute('data-base-href', base + 'app.html?stage=prospect' + themeParam); updateLaunchUrl('prospect'); }
+  var bCh = document.getElementById('launch-btn-client');
+  if (bCh) { bCh.setAttribute('data-base-href', base + 'app.html?stage=client' + themeParam); updateLaunchUrl('client'); }
+  var url = base + 'app.html?stage=' + stage + themeParam;
   var el = document.getElementById('share-url');
   el.href = url;
   el.textContent = ct ? 'Copy share link (custom)' : ('app.html?stage=' + stage + '&theme=' + theme);
