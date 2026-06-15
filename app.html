@@ -12,7 +12,7 @@
   <meta name="theme-color" content="#1A2332">
   <link rel="manifest" href="manifest.json">
   <title>Regional Prosperity</title>
-<script>(function(){var p=new URLSearchParams(location.search);var stage=p.get('stage');window.__rpStage=stage==='client'?'ch':'ph';window.__rpScreen=(p.get('screen')==='login'||stage===null)?'login':null;var t=p.get('theme');window.__rpTheme=(['navy','forest','dusk','sky'].indexOf(t)>=0)?t:'navy';var ct=p.get('ct');if(ct){try{window.__rpCustomTheme=JSON.parse(atob(ct));}catch(e){}}})();</script>
+<script>(function(){var p=new URLSearchParams(location.search);var stage=p.get('stage');window.__rpStage=stage==='client'?'ch':'ph';window.__rpScreen=p.get('screen')==='login'?'login':(!stage?'login':null);var t=p.get('theme');window.__rpTheme=(['navy','forest','dusk','sky'].indexOf(t)>=0)?t:'navy';var ct=p.get('ct');if(ct){try{window.__rpCustomTheme=JSON.parse(atob(ct));}catch(e){}}})();</script>
 <style id="__rp_loading">#app{visibility:hidden;}</style>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
   <style>
@@ -412,6 +412,7 @@
             <input class="login-phone-input" type="tel" id="login-mobile-input" placeholder="04XX XXX XXX" inputmode="numeric"/>
           </div>
           <button class="cta" onclick="loginSendCode()" style="margin-top:20px">Send verification code</button>
+          <button class="cta-outline" onclick="loginComplete()" style="margin-top:8px">Continue as demo</button>
           <div class="login-or"><div class="login-or-line"></div><span class="login-or-text">or</span><div class="login-or-line"></div></div>
           <button class="cta-outline">Send me an email link</button>
         </div>

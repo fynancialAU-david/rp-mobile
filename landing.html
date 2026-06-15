@@ -532,6 +532,7 @@ function launch() {
   var url = base + 'app.html?stage=' + stage;
   var ct = buildCtParam();
   url += ct ? ('&ct=' + ct) : ('&theme=' + theme);
+  if (!document.getElementById('skip-login-chk').checked) url += '&screen=login';
   var win = window.open(url, '_blank');
   if (win) {
     setTimeout(function() {
