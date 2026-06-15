@@ -11,14 +11,14 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="theme-color" content="#1A2332">
   <link rel="manifest" href="manifest.json">
-  <title>Regional Prosperity — Launcher</title>
+  <title>Regional Prosperity â€” Launcher</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Lora:wght@400;500;600&family=Merriweather:wght@400;700&family=Inter:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&family=Nunito:wght@400;500;600&family=Outfit:wght@300;400;500;600&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Inter',sans-serif;min-height:100vh;transition:background .4s ease,color .4s ease;}
 
-/* ── Theme variables ── */
+/* â”€â”€ Theme variables â”€â”€ */
 .th-navy{--bg:#1A2332;--bg2:#0F1620;--accent:#C8933A;--accent2:#00BF7D;--text:rgba(255,255,255,.9);--text2:rgba(255,255,255,.55);--card:rgba(255,255,255,.06);--card-border:rgba(255,255,255,.1);--btn-text:#1A2332;}
 .th-forest{--bg:#2A3D2A;--bg2:#1A2A1A;--accent:#D4A843;--accent2:#00BF7D;--text:rgba(255,255,255,.9);--text2:rgba(255,255,255,.55);--card:rgba(255,255,255,.06);--card-border:rgba(255,255,255,.1);--btn-text:#2A3D2A;}
 .th-dusk{--bg:#3D2820;--bg2:#271810;--accent:#C46A3A;--accent2:#00BF7D;--text:rgba(255,255,255,.9);--text2:rgba(255,255,255,.55);--card:rgba(255,255,255,.06);--card-border:rgba(255,255,255,.1);--btn-text:#3D2820;}
@@ -29,7 +29,7 @@ body{background:var(--bg);color:var(--text);}
 .bg-grad::before{content:'';position:absolute;top:-20%;right:-10%;width:60%;height:60%;border-radius:50%;background:radial-gradient(circle,rgba(200,147,58,.12) 0%,transparent 70%);}
 .bg-grad::after{content:'';position:absolute;bottom:-10%;left:-10%;width:50%;height:50%;border-radius:50%;background:radial-gradient(circle,rgba(0,191,125,.07) 0%,transparent 70%);}
 
-/* ── Landing page ── */
+/* â”€â”€ Landing page â”€â”€ */
 .page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;}
 .logo-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
 .firm-name{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:var(--text);letter-spacing:.01em;}
@@ -80,7 +80,7 @@ body{background:var(--bg);color:var(--text);}
 .footer{margin-top:48px;font-size:11px;color:var(--text2);text-align:center;line-height:1.8;}
 .footer strong{color:var(--text);font-weight:500;}
 
-/* ── Customiser overlay ── */
+/* â”€â”€ Customiser overlay â”€â”€ */
 .cust-overlay{position:fixed;inset:0;z-index:200;display:flex;flex-direction:column;background:var(--bg2,#0F1620);transform:translateY(100%);transition:transform .35s cubic-bezier(.2,.8,.2,1);}
 .cust-overlay.open{transform:translateY(0);}
 
@@ -133,7 +133,7 @@ input[type="color"]::-webkit-color-swatch{border-radius:6px;border:none;}
 .stop-btn small{display:block;font-size:9px;font-weight:400;margin-top:2px;opacity:.7;}
 .stop-btn.on{border-color:var(--accent);background:rgba(200,147,58,.12);color:var(--text);}
 
-/* ── Mini phone preview ── */
+/* â”€â”€ Mini phone preview â”€â”€ */
 .mini-phone{width:150px;border-radius:18px;overflow:hidden;box-shadow:0 10px 32px rgba(0,0,0,.55);display:flex;flex-direction:column;}
 .mini-hdr{padding:8px 10px 7px;display:flex;align-items:center;gap:5px;flex-shrink:0;}
 .mini-wm{font-size:8px;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap;}
@@ -154,7 +154,7 @@ input[type="color"]::-webkit-color-swatch{border-radius:6px;border:none;}
 
 <div class="bg-grad"></div>
 
-<!-- ── Customiser overlay ── -->
+<!-- â”€â”€ Customiser overlay â”€â”€ -->
 <div class="cust-overlay" id="cust-overlay">
   <div class="cust-header">
     <button class="cust-back" onclick="closeCustomiser()" aria-label="Back">
@@ -256,7 +256,7 @@ input[type="color"]::-webkit-color-swatch{border-radius:6px;border:none;}
           <div class="mini-card" id="mp-card">
             <div class="mini-albl" id="mp-albl">Portfolio value</div>
             <div class="mini-aval" id="mp-aval">$482,500</div>
-            <div class="mini-asub">↑ 12.4% this year</div>
+            <div class="mini-asub">â†‘ 12.4% this year</div>
             <div class="mini-abtn" id="mp-abtn">View portfolio</div>
           </div>
         </div>
@@ -270,7 +270,7 @@ input[type="color"]::-webkit-color-swatch{border-radius:6px;border:none;}
   </div>
 </div>
 
-<!-- ── Landing page ── -->
+<!-- â”€â”€ Landing page â”€â”€ -->
 <div class="page">
   <div class="logo-row">
     <span class="rp-icon-lg">
@@ -279,20 +279,20 @@ input[type="color"]::-webkit-color-swatch{border-radius:6px;border:none;}
     <span class="firm-name">Regional Prosperity</span>
   </div>
 
-  <div class="tagline">Client Experience — Powered by Fynancial</div>
+  <div class="tagline">Client Experience â€” Powered by Fynancial</div>
 
   <div class="demo-label">Choose a client scenario</div>
 
   <div class="stage-row">
     <button class="stage-btn active" id="btn-prospect" onclick="setStage('prospect')">
-      <div class="stage-btn-icon">🌱</div>
+      <div class="stage-btn-icon">ðŸŒ±</div>
       <div class="stage-btn-title">Prospect</div>
-      <div class="stage-btn-sub">Sarah is new — onboarding in progress, adviser assigned</div>
+      <div class="stage-btn-sub">Sarah is new â€” onboarding in progress, adviser assigned</div>
     </button>
     <button class="stage-btn" id="btn-client" onclick="setStage('client')">
-      <div class="stage-btn-icon">⭐</div>
+      <div class="stage-btn-icon">â­</div>
       <div class="stage-btn-title">Active Client</div>
-      <div class="stage-btn-sub">Sarah is established — annual review coming up in 18 days</div>
+      <div class="stage-btn-sub">Sarah is established â€” annual review coming up in 18 days</div>
     </button>
   </div>
 
@@ -312,35 +312,35 @@ input[type="color"]::-webkit-color-swatch{border-radius:6px;border:none;}
 
   <button class="cust-trigger" onclick="openCustomiser()">
     <i class="ti ti-color-swatch" aria-hidden="true"></i>
-    Customise brand →
+    Customise brand â†’
   </button>
 
   <a class="launch-btn" id="launch-btn-prospect" href="app.html?stage=prospect&theme=navy" data-base-href="app.html?stage=prospect&theme=navy" target="_blank">
     <i class="ti ti-device-mobile" aria-hidden="true"></i>
-    Launch — Prospect
+    Launch â€” Prospect
   </a>
   <label class="skip-login-lbl"><input type="checkbox" id="skip-login-prospect" checked onchange="updateLaunchUrl('prospect')"> Skip login</label>
   <a class="launch-btn" id="launch-btn-client" href="app.html?stage=client&theme=navy" data-base-href="app.html?stage=client&theme=navy" target="_blank" style="margin-top:16px">
     <i class="ti ti-device-mobile" aria-hidden="true"></i>
-    Launch — Active Client
+    Launch â€” Active Client
   </a>
   <label class="skip-login-lbl"><input type="checkbox" id="skip-login-client" checked onchange="updateLaunchUrl('client')"> Skip login</label>
 
   <div class="fs-hint" id="fs-hint">
     Opens in <span>full screen</span> for the most realistic experience.<br/>
-    On iPhone: tap <span>Share → Add to Home Screen</span> first.
+    On iPhone: tap <span>Share â†’ Add to Home Screen</span> first.
   </div>
 
   <div class="divider-line"></div>
 
   <div class="share-row">
     <span class="share-label">Share</span>
-    <a class="share-link" id="share-url" href="#">loading…</a>
+    <a class="share-link" id="share-url" href="#">loadingâ€¦</a>
   </div>
 
   <div class="footer">
-    <strong>Regional Prosperity</strong> · Client Experience Preview<br/>
-    Built with Fynancial · Confidential — not for distribution
+    <strong>Regional Prosperity</strong> Â· Client Experience Preview<br/>
+    Built with Fynancial Â· Confidential â€” not for distribution
   </div>
 </div>
 
@@ -565,11 +565,11 @@ function launch() {
 
 // Mobile hint
 if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
-  document.getElementById('fs-hint').innerHTML = 'For the best experience on iPhone: tap <span>Share → Add to Home Screen</span>, then open the app from your home screen.';
+  document.getElementById('fs-hint').innerHTML = 'For the best experience on iPhone: tap <span>Share â†’ Add to Home Screen</span>, then open the app from your home screen.';
 } else if (/Android/.test(navigator.userAgent)) {
   document.getElementById('fs-hint').innerHTML = 'For the best experience: tap <span>Add to Home Screen</span> in your browser menu.';
 } else {
-  document.getElementById('fs-hint').innerHTML = 'Tap Launch to open in <span>full screen</span> — press Esc to exit.';
+  document.getElementById('fs-hint').innerHTML = 'Tap Launch to open in <span>full screen</span> â€” press Esc to exit.';
 }
 
 // Init preview
